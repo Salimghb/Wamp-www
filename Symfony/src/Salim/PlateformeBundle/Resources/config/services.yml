@@ -1,0 +1,4 @@
+services:
+#    salim_plateforme.example:
+#        class: Salim\PlateformeBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
