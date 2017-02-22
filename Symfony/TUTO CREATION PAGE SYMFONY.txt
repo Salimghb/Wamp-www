@@ -1,0 +1,37 @@
+1 -- Ajout d'une route dans le routeur :
+
+  goodbye_the_world:
+
+    #Fin de l'URL ciblé par l'util :
+    path :     /bye-world							
+
+    #Fonction ciblée dans le controleur AdvertControlleur : --
+    defaults : { _controller : SalimPlateformeBundle:Advert:indexBye }  
+
+
+
+2 -- Ajout de la fonction ciblée dans le controleur AdvertControlleur : 
+
+  public function indexByeAction()
+  {
+    $contentBye = $this -> get('templating') -> render (
+    #On donne au render la vue twig correspondante à notre page, et les paramètres qu'elle utilisera
+      'SalimPlateformeBundle:Advert:indexBye.html.twig', 
+      array(...);
+    #On retourne une réponse formée à partir de la vue twig
+    return new Response($contentBye);
+ 
+  }
+
+3 -- Création de la vue twig :
+
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title> A bientôt sur ma deuxieme page ! </title>
+    </head>
+    <body>
+      <h1> Goodbye {{prenom ~" "~ nom}} ! </h1>
+      <p> A bientôt ! </p>
+    </body>
+  </html>

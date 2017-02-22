@@ -1,0 +1,20 @@
+Scénario Nominal "INSTALLER COMPOSER" :
+
+1 - L'utilisateur rentre "https://github.com/composer/windows-setup/releases/download/v4.5.0/Composer-Setup.4.5.0.exe" sur son navigateur
+
+2 - L'utilisateur lance le programme d'installation téléchargé composer.exe et installe Composer
+
+3 - L'utilisateur ouvre un terminal Administrateur dans C:/wamp64/www/
+
+4 - L'utilsateur crée un dossier qu'il nomme comme il le souhaite
+
+5 - L'utilisateur y accède dans le terminal
+
+6 - L'utilisateur utilise la commande suivante dans le terminal Administrateur "composer create-project symfony/framework-standard-edition NOMDUPROJET"
+
+7 - Le systeme installe les composants necéssaires à la création du projet
+
+
+Extensions :
+
+*.a - Ca marche pô...

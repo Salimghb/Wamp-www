@@ -1,3 +1,15 @@
-hello_the_world:
-    path :     /hello-world
-    defaults : { _controller : SalimPlateformeBundle:Advert:index }
+oc_platform_home:
+    path:      /platform
+    defaults:  { _controller: SalimPlateformeBundle:Advert:index }
+    
+oc_platform_view:
+    path:      /platform/advert/{id}
+    defaults:  { _controller: SalimPlateformeBundle:Advert:view }
+    
+oc_platform_add:
+    path:      /platform/add
+    defaults:  { _controller: SalimPlateformeBundle:Advert:add }
+
+oc_platform_view_slug:
+    path:      /platform/{year}/{slug}.{format}
+    defaults:  {_controller: OCPlatformBundle:Advert:viewSlug}
