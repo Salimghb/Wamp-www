@@ -3,50 +3,76 @@
 namespace Salim\PlateformeBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AdvertController extends Controller
 {
 
-	public function indexAction()
+
+	public function indexAction($page)
 	{
-		$content = $this -> get('templating') -> render(
+		// On ne sait pas combien de pages il y a
+    	// Mais on sait qu'une page doit être supérieure ou égale à 1
+		if ($page < 1){
+			throw new NotFoundHttpException ('Page \''.$page.'\' inexistante !');
+		}
 
-			'SalimPlateformeBundle:Advert:index.html.twig',
-			array('nom'=>'Ghbabra',
-				'prenom'=>'Salim'));
-
-		return new Response($content);
+		return $this->render('SalimPlateformeBundle:Advert:index.html.twig');
 
 	}
 
 
 	public function viewAction($id)
 	{
-
-		return new Response ("Affichage de l'annonce de l'id : ".$id);
-
+		return $this->render('SalimPlateformeBundle:Advert:view.html.twig',
+			array('id'=>$id));
 	}
 
-	public function viewSlugAction($slug,$year,$format)
+
+	public function addAction(Request $request)
+	{
+		if ($request->isMethod('POST')){
+
+			$request->getSession()->getFlashBag->add('notice','Annonce enregistrée !');
+
+			return $this->redirectToRoute ('oc_platform_view', array('id'=>5));
+		}
+
+		return $this->render('SalimPlateformeBundle:Advert:add.html.twig');
+	}
+
+
+	public function editAction($id, Request $request)
 	{
 
-		return new Response (
-			"Affichage de l'annonce correspondante au slug '".$slug.
-			"', créée en ".$year." au format ".$format.".");
+		if ($request->isMethod('POST')){
+
+			$request->getSession()->getFlashBag()->add('notice','Annonce modifiée !');
+
+			return $this->redirectToRoute('oc_platform_view',array('id'=>5));
+
+		}
+
+		return $this->render('SalimPlateformeBundle:Advert:edit.html.twig');
 
 	}
 
-	public function indexByeAction()
+
+	public function deleteAction($id)
 	{
-		$contentBye = $this->get('templating') -> render (
 
-			'SalimPlateformeBundle:Advert:indexBye.html.twig', 
-			array('nom'=>'Ghbabra',
-				'prenom'=>'Salim'));
-
-		return new Response($contentBye);
+		return $this->render('SalimPlateformeBundle:Advert:delete.html.twig');
 
 	}
+
+
+
+
+
+
+
+
 
 }

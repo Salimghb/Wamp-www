@@ -1,15 +1,33 @@
 oc_platform_home:
-    path:      /platform
-    defaults:  { _controller: SalimPlateformeBundle:Advert:index }
-    
-oc_platform_view:
-    path:      /platform/advert/{id}
-    defaults:  { _controller: SalimPlateformeBundle:Advert:view }
-    
-oc_platform_add:
-    path:      /platform/add
-    defaults:  { _controller: SalimPlateformeBundle:Advert:add }
+    path: /{page}
+    defaults: 
+      _controller: SalimPlateformeBundle:Advert:index
+      page: 1
+    requirements: 
+      page: \d*
 
-oc_platform_view_slug:
-    path:      /platform/{year}/{slug}.{format}
-    defaults:  {_controller: OCPlatformBundle:Advert:viewSlug}
+oc_platform_view:
+    path: /advert/{id}
+    defaults: 
+      _controller: SalimPlateformeBundle:Advert:view
+    requirements:
+      page: \d+
+
+oc_platform_add:
+    path: /add
+    defaults: 
+      _controller: SalimPlateformeBundle:Advert:add
+
+oc_platform_edit:
+    path: /edit/{id}
+    defaults:
+      _controller: SalimPlateformeBundle:Advert:edit
+    requirements:
+      id: \d+
+
+oc_platform_delete:
+    path: /delete/{id}
+    defaults: 
+      _controller: SalimPlateformeBundle:Advert:delete
+    requirements:
+      page: \d+
