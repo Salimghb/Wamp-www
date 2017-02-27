@@ -1,0 +1,14 @@
+--CHOISIR LA BONNE VERSION DU BUNDLE --
+
+Les prérequis doivent correspondre avec nos versions actuelles
+
+-- AJOUT AU FICHIER SYMFONY/COMPOSER.JSON --
+
+"require": {
+		...
+		"doctrine/doctrine-fixtures-bundle": "~2.3"
+},
+
+-- AJOUT AU FICHIER SYMFONY/APP/APPKERNEL.PHP --
+
+$bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();

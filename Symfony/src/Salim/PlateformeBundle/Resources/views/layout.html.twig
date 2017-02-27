@@ -1,0 +1,19 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}
+	Annonces - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	{# Titre commun à toutes les pages du bundle #}
+	<h1>Annonces</h1>
+
+	<hr>
+
+	{% block salimplateforme_body %}
+		{# Bloc que les vues du bundle pourront remplir #}
+	{% endblock %}
+
+{% endblock %}
+

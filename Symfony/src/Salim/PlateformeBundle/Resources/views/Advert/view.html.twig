@@ -1,22 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Bienvenue sur la page de l'annonce {{id}} !</title>
-</head>
-<body>
-	<h1> Annonce numéro {{id}} </h1>
+{% extends "SalimPlateformeBundle::layout.html.twig" %}
 
-	<div>
-		{% for message in app.session.flashbag.get('info') %}
-			<p>Message flash : {{message}} </p>
-		{% endfor %}
+{% block title %}
+	Lecture d'une annonce - {{parent()}}
+{% endblock %}
+
+{% block salimplateforme_body %}
+	<h2>{{advert.title}}</h2>
+	<i>Par {{advert.author}}, le {{advert.date|date('d/m/Y')}} </i>
+	<div class="well">
+		{{advert.content}}
 	</div>
 
+	<p>
+		<a href="{{ path('oc_platform_home') }}" class="btn btn-default">
+			<i class="glyphicon glyphicon-chevron-left"></i>
+			Retour à la liste
+		</a>
 
-	<p> 
-		Ici nous pourrons lire l'annonce numéro {{id}} <br />
-		Mais pour l'instant, nous ne savons pas encore le faire!
+		<a href="{{ path('oc_platform_edit',{'id':advert.id}) }}" class="btn btn-default">
+			<i class="glyphicon glyphicon-edit"></i>
+			Modifier l'annonce
+		</a>
+
+		<a href="{{ path('oc_platform_delete',{'id':advert.id}) }}" class="btn btn-default">
+			<i class="glyphicon glyphicon-trash"></i>
+			Supprimer l'annonce
+		</a>
 	</p>
 
-</body>
-</html>
+{% endblock %}
