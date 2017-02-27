@@ -2,6 +2,7 @@
 
 namespace Salim\PlateformeBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +13,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Advert
 {
+    /**
+     * @ORM\ManyToMany(targetEntity="Salim\PlateformeBundle\Entity\Category", cascade={"persist"})
+     * @ORM\JoinTable(name="advertcategory")
+     */
+    private $categories;
+
 
     /**
      * @ORM\OneToOne(targetEntity = "Salim\PlateformeBundle\Entity\Image", cascade={"persist"})
@@ -66,7 +73,9 @@ class Advert
     {
 
         $this->date = new \Datetime();
-
+        // $categories doit être un ArrayCollection : On le définit ici
+        $this->categories = new ArrayCollection();
+        
     }
 
 
@@ -223,5 +232,39 @@ class Advert
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Add category
+     *
+     * @param \Salim\PlateformeBundle\Entity\Category $category
+     *
+     * @return Advert
+     */
+    public function addCategory(Category $category)
+    {
+        $this->categories[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \Salim\PlateformeBundle\Entity\Category $category
+     */
+    public function removeCategory(Category $category)
+    {
+        $this->categories->removeElement($category);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 }
