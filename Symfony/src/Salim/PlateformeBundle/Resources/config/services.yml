@@ -2,6 +2,24 @@ services:
     salim_plateforme.antispam:
       class: Salim\PlateformeBundle\AntiSpam\SalimAntiSpam
       arguments: 
-      - "@mailer"
-      - %locale%
-      - 5
+        - "@mailer"
+        - %locale%
+        - 5
+
+    salim_plateforme.email.application_mailer:
+      class: Salim\PlateformeBundle\Email\ApplicationMailer
+      arguments: 
+        - "@mailer"
+
+    salim_plateforme.doctrine_listener.application_creation:
+      class: Salim\PlateformeBundle\DoctrineListener\ApplicationCreationListener
+      arguments: 
+        - "@salim_plateforme.email.application_mailer"
+      tags: 
+        - { 
+            name: doctrine.event_listener,
+            event: postPersist
+          }
+
+
+

@@ -1,0 +1,36 @@
+{% extends 'ConciergerieBundle:Entreprise:index.html.twig' %}
+
+
+{% block body %}
+  <section class="container catalogue">
+    <div class="row">
+      <h2>Ajout de salarié</h2>
+    </div>
+    
+    {{ form_start(form, {'method': 'post', 'action': path('conciergerie_ECEntreprise_addSalarie'), 'attr': {'class': ''}}) }}
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.salaries, {'attr': {'class':'form-control'},'label':'Séléctionnez des salariés à ajouter à votre liste :'}) }}
+    </div>
+    <br>
+    <div class="alert alert-warning">
+      Les salariés ajoutés pourront profiter des services inclus dans vos abonnements.
+    </div>
+
+    <p>
+
+      <input type="submit" class="btn btn-success sub-btn" value="Valider" />
+
+      <a href="{{ path('conciergerie_ECEntreprise_listeSalaries')}}" class="btn btn-warning">
+
+        Retour à la liste des salariés
+
+      </a>
+
+    </p>
+    
+    {{form_end(form)}}
+
+  </section>
+
+{% endblock %}

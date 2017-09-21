@@ -1,0 +1,141 @@
+{% extends 'ConciergerieBundle:Salarie:index.html.twig' %}
+
+{% block body %}
+  <section class="container">
+
+    {% for message in app.session.flashbag.get('notice') %}
+    <div class="alert alert-success">
+      {{message}}
+    </div>
+    {% endfor %}
+
+    <h2>Commandes en attente de validation du prestataire :</h2>
+    {% if commandesNonValide is empty %}
+      <p class="alert alert-warning">Aucune commande en attente de validation.</p>
+    {% else %}
+      <table class="table table-bordered">
+        <tr>
+          <td>N° de commande : </td>
+          <td>Service : </td>
+          <td>Prestataire : </td>
+          <td>Tarif : </td>
+        </tr>
+        {% for commande in commandesNonValide %}
+          <tr>
+            <td>{{commande.id}}</td>
+            <td>{{commande.service.libelle}}</td>
+            <td>{{commande.service.prestataire.user.username|lower|capitalize}}</td>
+            <td>{{commande.service.tarif}} €</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
+
+    <h2>Commandes en attente de règlement :</h2>
+    {% if commandesNonRegle is empty %}
+      <p class="alert alert-warning">Aucune commande en attente de règlement.</p>
+    {% else %}
+      <p class="alert alert-info">Pensez à régler vos commandes rapidement une fois celles-ci validées. <br>Vous pourrez ensuite entrer en contact avec le prestataire et convenir ensemble des modalités de livraison du service.</p>
+      <table class="table table-bordered">
+        <tr>
+          <td>N° de commande : </td>
+          <td>Service : </td>
+          <td>Prestataire : </td>
+          <td>Tarif : </td>
+          <td>Action : </td>
+        </tr>
+        {% for commande in commandesNonRegle %}
+          <tr>
+            <td>{{commande.id}}</td>
+            <td>{{commande.service.libelle}}</td>
+            <td>{{commande.service.prestataire.user.username|lower|capitalize}}</td>
+            <td>{{commande.service.tarif}} €</td>
+            <td><a href="{{path('conciergerie_ECSalarie_commandePay',{'id':commande.id})}}"><input type="button" class="btn btn-success" value="Payer"></a></td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
+
+    <h2>Commandes en attente de livraison :</h2>
+    {% if commandesNonLivre is empty %}
+      <p class="alert alert-warning">Aucune commande en attente de livraison.</p>
+    {% else %}
+      <p class="alert alert-success">Les commandes ci-dessous sont en attente de livraison. N'oubliez pas de confirmer la livraison dès que celle-ci a eu lieu.<br>Prenez contact par mail ou téléphone avec le prestataire pour convenir ensemble des modalités de livraison du service.</p>
+      <table class="table table-bordered">
+        <tr>
+          <td>N° de commande : </td>
+          <td>Service : </td>
+          <td>Tarif : </td>
+          <td>Prestataire : </td>
+          <td>Téléphone : </td>
+          <td>Adresse mail : </td>
+          <td>Action : </td>
+
+        </tr>
+        {% for commande in commandesNonLivre %}
+          <tr>
+            <td>{{commande.id}}</td>
+            <td>{{commande.service.libelle}}</td>
+            <td>{{commande.service.tarif}} €</td>
+            <td>{{commande.service.prestataire.user.username|lower|capitalize}}</td>
+            <td>+33{{commande.service.prestataire.telephone}}</td>
+            <td>{{commande.service.prestataire.user.email}}</td>
+            <td><a href="{{path('conciergerie_ECSalarie_confirmLivraison',{'id':commande.id})}}"><input type="button" class="btn btn-success" value="Confirmer livraison"></a></td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
+
+    <h2>Commandes délivrées (avis non déposé)  :</h2>
+    {% if commandesNonCommente is empty %}
+      <p class="alert alert-warning">Vous n'avez pas d'avis à déposer sur vos commandes.</p>
+    {% else %}
+    <p class="alert alert-success">N'oubliez pas de déposer un avis pour les services qui vous ont été délivrés. <br> Les avis nous permettent d'améliorer la qualité des services proposés sur ce site.</p>
+      <table class="table table-bordered">
+        <tr>
+          <td>N° de commande : </td>
+          <td>Service : </td>
+          <td>Prestataire : </td>
+          <td>Tarif : </td>
+          <td>Action : </td>
+        </tr>
+        {% for commande in commandesNonCommente %}
+          <tr>
+            <td>{{commande.id}}</td>
+            <td>{{commande.service.libelle}}</td>
+            <td>{{commande.service.prestataire.user.username|lower|capitalize}}</td>
+            <td>{{commande.service.tarif}} €</td>
+            <td><a href="{{path('conciergerie_ECSalarie_commenterService',{'id':commande.id})}}"><input type="button" class="btn btn-primary" value="Déposer un avis"></a></td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
+
+
+    <h2>Commandes validées et avis déposé :</h2>
+    {% if commandesValide is empty %}
+      <p class="alert alert-warning">Vous n'avez pas encore de commande validée et commentée.</p>
+    {% else %}
+      <table class="table table-bordered">
+        <tr>
+          <td>N° de commande : </td>
+          <td>Service : </td>
+          <td>Prestataire : </td>
+          <td>Tarif : </td>
+        </tr>
+        {% for commande in commandesValide %}
+          <tr>
+            <td>{{commande.id}}</td>
+            <td>{{commande.service.libelle}}</td>
+            <td>{{commande.service.prestataire.user.username|lower|capitalize}}</td>
+            <td>{{commande.service.tarif}} €</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
+
+
+
+
+  </section>
+{% endblock %}

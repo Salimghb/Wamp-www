@@ -1,0 +1,58 @@
+{% extends 'ConciergerieBundle:Admin:index.html.twig' %}
+
+{% block body %}
+
+  <section class="container catalogue">
+
+    <div class="row">
+
+      <h3>
+        Liste des abonnements
+      </h3>
+
+      {% for flashMessage in app.session.flashbag.get('AbonnementDelete') %}
+
+        <h5 class="alert alert-danger">{{flashMessage}}</h5>
+
+      {% endfor %}
+
+      {% if listeAbonnements is empty %}
+        <br>
+        <h4>Aucun abonnement disponible</h4>
+      {% else %}
+
+        <table class="table table-bordered">
+
+          <tr>
+            <th>ID Abonnement</th>
+            <th>ID Entreprise cliente</th>
+            <th>Bouquet</th>
+            <th>Début</th>
+            <th>Fin</th>
+            <th>Durée</th>
+            <th>Supprimer</th>
+          </tr>
+
+          {% for abonnement in listeAbonnements %}
+
+            <tr>
+              <td><a href="{{path('conciergerie_admin_abonnement',{'id':abonnement.id})}}">{{abonnement.id}}</a> </td>
+              <td><a href="{{path('conciergerie_admin_entreprise',{'id':abonnement.entreprise.id})}}">{{abonnement.entreprise.user.username|lower|capitalize}}</a></td>
+              <td>{{abonnement.bouquet.libelle|lower|capitalize}}</td>
+              <td>{{abonnement.dateDebut|date('d/m/Y')}}</td>
+              <td>{{abonnement.dateFin|date('d/m/Y')}}</td>
+              <td>{{abonnement.dureeAbo}} mois</td>
+              <td><a href="{{path('conciergerie_admin_deleteAbonnement',{'id':abonnement.id})}}"><input type="button" class="btn btn-danger" value="Supprimer"></a></td>
+            </tr>
+
+          {% endfor %}
+
+        </table>
+
+      {% endif %}
+
+    </div>
+
+  </section>
+
+{% endblock %}

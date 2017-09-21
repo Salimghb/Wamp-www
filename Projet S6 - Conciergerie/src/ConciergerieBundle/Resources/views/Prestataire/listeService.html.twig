@@ -1,0 +1,61 @@
+{% extends 'ConciergerieBundle:Prestataire:index.html.twig' %}
+
+
+{% block body %}
+  <section class="container catalogue">
+    {% for message in app.session.flashbag.get('notice') %}
+      <div class="alert alert-success">
+        {{message}}
+      </div>
+    {% endfor %}
+    {% if listeServices is empty %}
+      <p>
+        Vous n'avez pas encore proposé de service.<br>
+        Souhaitez vous vous en ajouter un ?
+      </p>
+      <div class="input-group">
+        <a href="{{path('conciergerie_ECPrestataire_addService')}}"><button type="button" class="btn btn-success">Proposer un nouveau service </button></a>
+      </div>
+
+    {% else %}
+
+      {% for service in listeServices %}
+        <div class="service col-lg-3 col-md-4 col-sm-6 col-xs-6">
+          <h3>{{service.libelle}}</h3>
+          <p><b>Tarif : </b> {{service.tarif}} €</p>
+          <p><b>Popularité : </b> <a href="{{path('conciergerie_ECPrestataire_commentaires',{'id':service.id})}}">{{service.nbCommentaires}} avis déposés</a> </p>
+          <!-- Affichage des commandes en attente de validation pour ce service -->
+          {% 
+          set nbcommandes = 0 
+          %}
+          {% for commande in service.commandes %}
+            {% if commande.etat.id == 1 %}
+              {% 
+              set nbcommandes = nbcommandes + 1 
+              %}
+            {% endif %}
+          {% endfor %}
+          {% if nbcommandes == 0 %}
+            <p>Aucune commande pour ce service</p>
+          {% else %}
+            <a href="{{ path('conciergerie_ECPrestataire_commandes',{'id':service.id}) }}">
+              <p>
+                {{nbcommandes}} commande(s) en attente de validation.
+              </p>
+            </a>
+          {% endif %}
+          <a href="{{ path('conciergerie_ECPrestataire_commandes',{'id':service.id}) }}">
+            <button type="button" class="btn btn-success">Consulter détail</button>
+          </a>
+          <!-- Redirection vers la page de consultation / modification des services -->
+          <a href="{{ path('conciergerie_ECPrestataire_service',{'id':service.id}) }}">
+            <button type="button" class="btn btn-primary">Modifier service</button>
+          </a>
+
+        </div>
+      {% endfor %}
+    {% endif %}
+
+
+  </section>
+{% endblock %}

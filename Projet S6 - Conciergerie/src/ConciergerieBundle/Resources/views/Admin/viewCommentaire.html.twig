@@ -1,0 +1,31 @@
+{% extends 'ConciergerieBundle:admin:index.html.twig' %}
+
+{% block body %}
+
+  <section class="container catalogue">
+
+    <div class="row">
+
+      <h3>Détails du commentaire {{commentaire.id}}</h3>
+
+      <p><b>Service concerné : </b>{{commentaire.service.libelle|lower|capitalize}}</p>
+      <p><b>Prestataire concerné : </b><a href="{{path('conciergerie_admin_prestataire',{'id':commentaire.service.prestataire.id})}}">{{commentaire.service.prestataire.user.username|lower|capitalize}}</a></p>
+      <p><b>Auteur : </b>{{commentaire.salarie.prenom|lower|capitalize ~ " " ~ commentaire.salarie.nom|lower|capitalize}}</p>
+      <p><b>Publié le {{commentaire.date|date('d/m/Y')}}</b> à {{commentaire.date|date('H:i:s')}}</p>
+      <p><b>Titre :</b> {{commentaire.titre}}</p>
+      <p><b>Contenu :</b> {{commentaire.contenu}}</p>
+      <p>
+
+        <a href="{{path('conciergerie_admin_validerCommentaire',{'id':commentaire.id})}}"><input type="button" class="btn btn-success" value="Valider"></a>
+
+        <a href="{{path('conciergerie_admin_deleteCommentaire',{'id':commentaire.id})}}"><input type="button" class="btn btn-danger" value="Supprimer"></a>
+
+        <a href=" {{path('conciergerie_admin_commentaires')}} "><button type="button" class="btn btn-warning">Retour à la liste des commentaires</button></a>
+
+      </p>
+
+    </div>
+
+  </section>
+
+{% endblock %}

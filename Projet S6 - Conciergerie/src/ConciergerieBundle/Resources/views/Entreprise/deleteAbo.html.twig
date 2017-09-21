@@ -1,0 +1,30 @@
+{% extends 'ConciergerieBundle:Entreprise:index.html.twig' %}
+
+
+{% block body %}
+  <section class="container catalogue">
+    <div class="row">
+      <h2>Supprimer un abonnement</h2>
+    </div>
+    
+    <p>
+      Etes-vous certain de vouloir supprimer l'abonnement au bouquet "{{ abonnement.bouquet.libelle }}" ?
+    </p>
+
+    <form action="{{ path('conciergerie_ECEntreprise_deleteAbo', {'id': abonnement.id}) }}" method="post">
+
+      <input type="submit" value="Supprimer" class="btn btn-danger" />
+
+      <a href="{{ path('conciergerie_ECEntreprise_viewAbo', {'id': abonnement.id}) }}" class="btn btn-warning">
+
+        Retour à l'abonnement
+
+      </a>
+
+      
+      {{ form_rest(form) }}
+    </form>
+
+  </section>
+
+{% endblock %}

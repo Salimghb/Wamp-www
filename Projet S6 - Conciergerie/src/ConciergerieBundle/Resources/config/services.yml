@@ -1,0 +1,4 @@
+services:
+#    conciergerie.example:
+#        class: ConciergerieBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

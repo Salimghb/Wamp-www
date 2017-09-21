@@ -1,0 +1,79 @@
+{% extends 'ConciergerieBundle::layout.html.twig' %}
+
+{% block redirectHome %}
+  "{{ path('conciergerie_ECEntreprise') }}"
+{% endblock %}
+
+{% block navbar %}
+
+  <a href="{{path('conciergerie_ECEntreprise')}}"><button type="button" class="btn btn-default">Nos bouquets</button></a>
+
+
+  <a href=" {{path('conciergerie_ECEntreprise_listeAbo')}} "><button type="button" class="btn btn-default">Mes abonnements</button></a>
+
+
+  <a href=" {{path('conciergerie_ECEntreprise_listeSalaries')}} "><button type="button" class="btn btn-default">Mes salariés</button></a>
+
+
+  <a href=" {{path('conciergerie_ECEntreprise_monCompte')}} "><button type="button" class="btn btn-default">Mon compte</button></a>
+
+{% endblock %}
+
+{% block TitrePage %}
+  <div class="container-fluid TitrePage">
+    <h2>Espace Entreprise</h2>
+  </div>
+{% endblock %}
+
+{% block body %}
+  <section class="container catalogue">
+
+    {% for flashMessage in app.session.flashbag.get('CompteModif') %}
+      <h5 class="alert alert-info">{{flashMessage}}</h5>
+    {% endfor %}
+    
+    <div class="row">
+      <h2>Découvrez nos nouveaux bouquets !</h2>
+    </div>
+
+
+    <div class="row">
+
+      {% if listePropositions is empty %}
+
+        Aucun bouquet n'est disponible pour le moment!
+
+      {% else %}
+
+        {% for bouquet in listePropositions %}
+
+          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+
+            <h3>Bouquet {{bouquet.id}} : {{bouquet.libelle|lower|capitalize}}</h3>
+            <p><b>Tarif mensuel :</b> {{bouquet.tarif}}€</p>
+            <p>
+
+              <b>Types de service inclus :</b><br>
+              {% if bouquet.typesService is empty %}
+                Aucun type de service inclus!
+              {% else %}
+                {% for type in bouquet.typesService %}
+                  - {{type.libelle}} <br>
+                {% endfor %}
+              {% endif %}
+
+            </p>
+
+            <a href=" {{path('conciergerie_ECEntreprise_addAbo')}} "><button type="button" class="btn btn-success">S'abonner</button></a>
+
+          </div>
+
+        {% endfor %}
+
+      {% endif %}
+
+    </div>
+
+  </section>
+
+{% endblock %}

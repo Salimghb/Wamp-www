@@ -1,0 +1,37 @@
+{% extends 'ConciergerieBundle:Admin:index.html.twig' %}
+
+
+
+{% block body %}
+
+  <section class="container catalogue">
+
+    <div class="row">
+
+      <h3>Détails du prestataire {{prestataire.id}}</h3>
+      
+      <p><b>Raison Sociale : </b>{{prestataire.user.username|lower|capitalize}}</p>
+      <p><b>SIRET : </b>{{prestataire.siret|lower|capitalize}}</p>
+      <p><b>Responsable : </b>{{prestataire.responsable}}</p>
+      <p><b>Téléphone : </b>+33{{prestataire.telephone}}</p>
+      <p><b>Ville : </b> {{prestataire.adresse.ville|lower|capitalize}} </p>
+      <p><b>Liste des services proposés : </b> <br>
+        {% if prestataire.services is empty %}
+          Ce prestataire n'a encore proposé aucun service
+        {% else %}
+          {% for service in prestataire.services %}
+            - {{service.libelle|lower|capitalize ~ " au tarif de " ~ service.tarif}}€<br>
+          {% endfor %}
+        {% endif %}
+        
+      </p>
+      <p>
+        <a href="{{path('conciergerie_admin_deletePrestataire',{'id':prestataire.id})}}"><button type="button" class="btn btn-danger">Supprimer le prestataire</button></a>
+        
+        <a href=" {{path('conciergerie_admin_prestataires')}} "><button type="button" class="btn btn-warning">Retour à la liste des prestataires</button></a>
+      </p>
+    </div>
+
+  </section>
+
+{% endblock %}

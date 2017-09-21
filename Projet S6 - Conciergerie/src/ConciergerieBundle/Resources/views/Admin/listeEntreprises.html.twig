@@ -1,0 +1,54 @@
+{% extends 'ConciergerieBundle:Admin:index.html.twig' %}
+
+{% block body %}
+
+  <section class="container catalogue">
+
+    <div class="row">
+
+      <h3>
+        Liste des entreprises
+      </h3>
+      {% for flashMessage in app.session.flashbag.get('EntrepriseDelete') %}
+
+        <h5 class="alert alert-danger">{{flashMessage}}</h5>
+
+      {% endfor %}
+      {% if listeEntreprises is empty %}
+        <br>
+        <h4>Aucune entreprise disponible</h4>
+      {% else %}
+
+        <table class="table table-bordered">
+
+          <tr>
+            <th>ID Entreprise</th>
+            <th>Raison Sociale</th>
+            <th>SIRET</th>
+            <th>Numéro de téléphone</th>
+            <th>Site web</th>
+            <th>Supprimer</th>
+          </tr>
+
+          {% for entreprise in listeEntreprises %}
+
+            <tr>
+              <td><a href="{{path('conciergerie_admin_entreprise',{'id':entreprise.id})}}">{{entreprise.id}}</a> </td>
+              <td>{{entreprise.user.username|lower|capitalize}}</td>
+              <td>{{entreprise.siret}}</td>
+              <td>{{'+33' ~ entreprise.telephone}}</td>
+              <td><a href="http://{{entreprise.site}}">{{entreprise.site}}</a></td>
+              <td><a href="{{path('conciergerie_admin_deleteEntreprise',{'id':entreprise.id})}}"><input type="button" class="btn btn-danger" value="Supprimer"></a></td>
+            </tr>
+
+          {% endfor %}
+
+        </table>
+
+      {% endif %}
+
+    </div>
+
+  </section>
+
+{% endblock %}

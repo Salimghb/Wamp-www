@@ -1,0 +1,30 @@
+{% extends 'ConciergerieBundle:Entreprise:index.html.twig' %}
+
+
+{% block body %}
+  <section class="container catalogue">
+    <div class="row">
+      <h2>Supprimer un salarié</h2>
+    </div>
+    
+    <p>
+      Etes-vous certain de vouloir supprimer le salarié "{{ salarie.nom|lower|capitalize ~ " " ~ salarie.prenom|lower|capitalize }}" ?
+    </p>
+
+    <form action="{{ path('conciergerie_ECEntreprise_deleteSalarie', {'id': salarie.id}) }}" method="post">
+
+      <input type="submit" value="Supprimer" class="btn btn-danger" />
+
+      <a href="{{ path('conciergerie_ECEntreprise_viewSalarie', {'id': salarie.id}) }}" class="btn btn-warning">
+
+        Retour aux informations du salarié
+
+      </a>
+
+      
+      {{ form_rest(form) }}
+    </form>
+
+  </section>
+
+{% endblock %}

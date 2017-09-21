@@ -1,0 +1,38 @@
+{% extends 'ConciergerieBundle:Admin:index.html.twig' %}
+
+
+{% block body %}
+  <section class="container catalogue">
+
+    {{ form_start(form, {'method': 'post', 'action': path('conciergerie_admin_addBouquet'), 'attr': {'class': ''}}) }}
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.libelle, {'attr': {'class':'form-control','placeholder':'Libellé'},'label':'Libellé :'}) }}
+    </div>
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.tarif, {'attr': {'class':'form-control','placeholder':'Tarif en euros'},'label':'Tarif mensuel :'}) }}
+    </div>
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.typesService, {'attr': {'class':'form-control'},'label':'Types de service mis à disposition :'}) }}
+    </div>
+
+    <p></p>
+    <p>
+
+      <input type="submit" class="btn btn-success sub-btn" value="Valider" />
+
+      <a href="{{ path('conciergerie_admin_bouquets')}}" class="btn btn-warning">
+
+        Retour à la liste des bouquets
+
+      </a>
+
+    </p>
+    
+    {{form_end(form)}}
+
+  </section>
+
+{% endblock %}

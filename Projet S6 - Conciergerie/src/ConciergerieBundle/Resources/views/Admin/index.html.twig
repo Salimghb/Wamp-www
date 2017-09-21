@@ -1,0 +1,177 @@
+{% extends 'ConciergerieBundle::layout.html.twig' %}
+
+
+{% block redirectHome %}
+  "{{ path('conciergerie_admin') }}"
+{% endblock %}
+
+
+{% block navbar %}
+
+  <a href="{{path('conciergerie_admin_entreprises')}}"><button type="button" class="btn btn-default">Entreprises</button></a>
+
+
+  <a href="{{path('conciergerie_admin_prestataires')}}"><button type="button" class="btn btn-default">Prestataires</button></a>
+
+
+  <a href=" {{path('conciergerie_admin_commentaires')}} "><button type="button" class="btn btn-default">Commentaires</button></a>
+
+
+  <a href=" {{path('conciergerie_admin_abonnements')}} "><button type="button" class="btn btn-default">Abonnements</button></a>
+
+
+  <a href=" {{path('conciergerie_admin_commandes')}} "><button type="button" class="btn btn-default">Commandes</button></a>
+
+
+  <a href=" {{path('conciergerie_admin_bouquets')}} "><button type="button" class="btn btn-default">Bouquets</button></a>
+
+{% endblock %}
+
+
+{% block TitrePage %}
+  <div class="container-fluid TitrePage">
+    <h2>Espace Administrateur</h2>
+  </div>
+{% endblock %}
+
+
+{% block body %}
+
+
+  <section class="container catalogue">
+
+    {% for flashMessage in app.session.flashbag.get('CompteModif') %}
+      <h5 class="alert alert-info">{{flashMessage}}</h5>
+    {% endfor %}
+    
+    <div class="row">
+
+      <h3>Les dernières commandes</h3>
+
+      {% if listeCommandes is empty %}
+        <h4>Aucune commande disponible</h4>
+      {% else %}
+
+        <table class="table table-bordered">
+
+          <tr>
+            <th>ID Commande</th>
+            <th>Service commandé</th>
+            <th>Client</th>
+            <th>Montant</th>
+            <th>Date</th>
+            <th>Supprimer</th>
+          </tr>
+
+          {% for commande in listeCommandes %}
+
+            <tr>
+              <td><a href="{{path('conciergerie_admin_commande',{'id':commande.id})}}">{{commande.id}}</a></td>
+              <td>{{commande.service.libelle}}</td>
+              <td>{{commande.salarie.prenom|lower|capitalize ~ " " ~ commande.salarie.nom|lower|capitalize}}</td>
+              <td>{{commande.service.tarif}}€</td>
+              <td>{{commande.date|date('d/m/Y')}}</td>
+              <td><a href="{{path('conciergerie_admin_deleteCommande',{'id':commande.id})}}"><input type="button" class="btn btn-danger" value="Supprimer"></a></td>
+            </tr>
+
+          {% endfor %}
+
+        </table>
+        <p>
+          <a href=" {{path('conciergerie_admin_commandes')}} "><button type="button" class="btn btn-info">Liste complète des commandes</button></a>
+        </p>
+      {% endif %}
+
+    </div>
+
+
+    <div class="row">
+
+      <h3>Les derniers abonnements</h3>
+
+      {% if listeAbonnements is empty %}
+        <h4>Aucun abonnement disponible</h4>
+      {% else %}
+
+        <table class="table table-bordered">
+
+          <tr>
+            <th>ID Abonnement</th>
+            <th>Entreprise cliente</th>
+            <th>Bouquet</th>
+            <th>Début</th>
+            <th>Fin</th>
+            <th>Durée</th>
+            <th>Supprimer</th>
+          </tr>
+
+          {% for abonnement in listeAbonnements %}
+
+            <tr>
+              <td><a href="{{path('conciergerie_admin_abonnement',{'id':abonnement.id})}}">{{abonnement.id}}</a> </td>
+              <td><a href="{{path('conciergerie_admin_entreprise',{'id':abonnement.entreprise.id})}}">{{abonnement.entreprise.user.username|lower|capitalize}}</a></td>
+              <td>{{abonnement.bouquet.libelle|lower|capitalize}}</td>
+              <td>{{abonnement.dateDebut|date('d/m/Y')}}</td>
+              <td>{{abonnement.dateFin|date('d/m/Y')}}</td>
+              <td>{{abonnement.dureeAbo}} mois</td>
+              <td><a href="{{path('conciergerie_admin_deleteAbonnement',{'id':abonnement.id})}}"><input type="button" class="btn btn-danger" value="Supprimer"></a></td>
+            </tr>
+
+          {% endfor %}
+
+        </table>
+        <p>
+          <a href=" {{path('conciergerie_admin_abonnements')}} "><button type="button" class="btn btn-info">Liste complète des abonnements</button></a>
+        </p>
+      {% endif %}
+
+    </div>
+
+
+    <div class="row">
+
+      <h3>
+        Les derniers commentaires
+      </h3>
+
+      {% if listeCommentaires is empty %}
+        <h4>Aucun commentaire disponible</h4>
+      {% else %}
+
+        <table class="table table-bordered">
+
+          <tr>
+            <th>ID Commentaire</th>
+            <th>Prestataire</th>
+            <th>Service commenté</th>
+            <th>Client</th>
+            <th>Date et heure</th>
+            <th>Valider</th>
+            <th>Supprimer</th>
+          </tr>
+
+          {% for commentaire in listeCommentaires %}
+
+            <tr>
+              <td><a href="{{path('conciergerie_admin_commentaire',{'id':commentaire.id})}}">{{commentaire.id}}</a> </td>
+              <td><a href="{{path('conciergerie_admin_prestataire',{'id':commentaire.service.prestataire.id})}}">{{commentaire.service.prestataire.user.username|lower|capitalize}}</a></td>
+              <td>{{commentaire.service.libelle|lower|capitalize}}</td>
+              <td>{{commentaire.salarie.prenom|lower|capitalize ~ " " ~ commentaire.salarie.nom|lower|capitalize}}</td>
+              <td>{{commentaire.date|date('À h:m:s') ~ ' le ' ~ commentaire.date|date('d/m/Y')}}</td>
+              <td><a href="{{path('conciergerie_admin_validerCommentaire',{'id':commentaire.id})}}"><input type="button" class="btn btn-success" value="Valider"></a> </td>
+              <td><a href="{{path('conciergerie_admin_deleteCommentaire',{'id':commentaire.id})}}"><input type="button" class="btn btn-danger" value="Supprimer"></a> </td>
+            </tr>
+
+          {% endfor %}
+
+        </table>
+        <p>
+          <a href=" {{path('conciergerie_admin_commentaires')}} "><button type="button" class="btn btn-info">Liste complète des commentaires</button></a>
+        </p>
+      {% endif %}
+
+    </div>
+
+  </section>
+
+{% endblock %}

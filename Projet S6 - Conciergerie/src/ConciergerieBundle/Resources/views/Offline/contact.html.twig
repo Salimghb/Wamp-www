@@ -1,0 +1,53 @@
+{% extends 'ConciergerieBundle:Offline:index.html.twig' %}
+
+{% block TitrePage %}
+  <div class="container-fluid TitrePage">
+    <h2>Contactez la conciergerie</h2>
+  </div>
+{% endblock %}
+
+{% block body %}
+
+  <section class="container">
+
+    <form method="post" action="/groupe19/web/app_dev.php" class="">
+
+      <div class="input-group col-xs-8">
+        <div>
+          <label class="required">Nom :</label><br>
+          <input class="form-control" type="text" required="required" maxlength="180" placeholder="Entrez votre nom"/>
+        </div>
+      </div>
+
+      <div class="input-group col-xs-8">
+        <div>
+          <label class="required">Adresse mail :</label><br>
+          <input class="form-control" type="text" required="required" maxlength="180" placeholder="Entrez votre adresse mail"/>
+        </div>
+      </div>
+
+      <div class="input-group col-xs-8">
+        <div>
+          <label class="required">Titre du message :</label><br>
+          <input class="form-control" type="text" required="required" maxlength="180" placeholder="Entrez le titre de votre message"/>
+        </div>
+      </div>
+
+      <div class="input-group col-xs-8">
+        <div>
+          <label for="comment">Message:</label>
+          <textarea class="form-control" rows="5" id="comment" placeholder="Entrez votre message"></textarea>
+        </div>
+      </div>
+
+      <div class="input-group col-xs-8">
+        <p>
+          <input type="submit" class="btn btn-success sub-btn" value="Envoyer !" />
+        </p>
+      </div>
+
+    </form>
+
+  </section>
+
+{% endblock %}

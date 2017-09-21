@@ -1,0 +1,56 @@
+{% extends 'ConciergerieBundle::layout.html.twig' %}
+
+{% block redirectHome %}
+  " {{ path('conciergerie_ECSalarie') }}"
+{% endblock %}
+
+
+{% block navbar %}
+
+
+  <a href="{{path('conciergerie_ECSalarie')}}"><button type="button" class="btn btn-default">Catalogue</button></a>
+
+
+  <a href=" {{path('conciergerie_ECSalarie_listeCommandes')}} "><button type="button" class="btn btn-default">Mes commandes</button></a>
+
+
+  <a href=" {{path('conciergerie_ECSalarie_monEntreprise')}} "><button type="button" class="btn btn-default">Mon entreprise</button></a>
+
+
+  <a href=" {{path('conciergerie_ECSalarie_monCompte')}} "><button type="button" class="btn btn-default">Mon compte</button></a>
+
+{% endblock %}
+
+
+{% block TitrePage %}
+  <div class="container-fluid TitrePage">
+    <h2>Espace Salarié</h2>
+  </div>
+{% endblock %}
+
+{% block body %}
+  <section class="container catalogue">
+    {% if listeServices is empty %}
+      <h3>Oups... Vous n'avez pour l'instant accès à aucun service.</h3>
+      <div class="alert alert-warning">
+        <h5>
+          <b>Votre entreprise vous a-t-elle bien ajouté(e) à sa liste de salariés ? </b><br>
+          Si oui, il est possible que son abonnement à l'un de nos bouquets soit terminé.
+        </h5>
+      </div>
+
+    {% endif %}
+
+    {% for service in listeServices %}
+      <div class="col-lg-4 col-sm-6 col-xs-6 service">
+        <h3>{{service.libelle}}</h3>
+        <p>{{service.description}}</p>
+        <p><b>Popularité :</b>  <a href="{{path('conciergerie_ECSalarie_service',{'id':service.id})}}">{{service.nbCommentaires}} avis</a> </p>
+        <p><b>Tarif :</b> {{service.tarif}} €</p>
+        <a href="{{path('conciergerie_ECSalarie_commande',{'id':service.id})}}"><button type="button" class="btn btn-success">Commander</button></a>
+      </div>
+    {% endfor %}
+
+  </section>
+
+{% endblock %}

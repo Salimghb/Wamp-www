@@ -1,0 +1,32 @@
+{% extends 'ConciergerieBundle:Admin:index.html.twig' %}
+
+
+{% block body %}
+  <section class="container catalogue">
+    <div class="row">
+      <h2>Supprimer un prestataire</h2>
+    
+    
+    <p>
+      Etes-vous certain de vouloir supprimer le prestataire "{{ prestataire.user.username|lower|capitalize}}" ?
+    </p>
+
+    <h4 class="alert alert-danger">La suppression d'un prestataire entrainera la suppression de tous les services qu'il propose sur le site de la conciergerie ainsi que la suppression de toutes les commandes liées à ceux-ci ! <h4>
+
+    <form action="{{ path('conciergerie_admin_deletePrestataire', {'id': prestataire.id}) }}" method="post">
+
+      <input type="submit" value="Supprimer" class="btn btn-danger" />
+
+      <a href="{{ path('conciergerie_admin_prestataire', {'id': prestataire.id}) }}" class="btn btn-warning">
+
+        Retour aux informations du prestataire
+
+      </a>
+
+      {{ form_rest(form) }}
+
+    </form>
+  </div>
+  </section>
+
+{% endblock %}

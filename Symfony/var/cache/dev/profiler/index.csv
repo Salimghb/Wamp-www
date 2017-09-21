@@ -1,0 +1,14 @@
+43222c,::1,GET,http://localhost/Symfony/web/app_dev.php/,1489181344,28be0a,200
+28be0a,::1,GET,http://localhost/Symfony/web/app_dev.php/,1489181347,,404
+80391d,127.0.0.1,GET,http://localhost/Symfony/web/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Den%26_controller%3DSalimPlateformeBundle%253AAdvert%253Amenu,1489181375,0d1db1,200
+0d1db1,::1,GET,http://localhost/Symfony/web/app_dev.php/platform,1489181376,,200
+d81673,127.0.0.1,GET,http://localhost/Symfony/web/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Den%26_controller%3DSalimPlateformeBundle%253AAdvert%253Amenu,1489181380,98abfe,200
+98abfe,::1,GET,http://localhost/Symfony/web/app_dev.php/platform/advert/7,1489181380,,200
+d5c03a,127.0.0.1,GET,http://localhost/Symfony/web/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Den%26_controller%3DSalimPlateformeBundle%253AAdvert%253Amenu,1489181393,d59a17,200
+d59a17,::1,GET,http://localhost/Symfony/web/app_dev.php/platform/delete/7,1489181394,,200
+4f6c74,127.0.0.1,GET,http://localhost/Symfony/web/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Den%26_controller%3DSalimPlateformeBundle%253AAdvert%253Amenu,1489181838,c87ffc,200
+c87ffc,::1,GET,http://localhost/Symfony/web/app_dev.php/platform,1489181838,,200
+0a1912,::1,GET,http://localhost/Symfony/web/app_dev.php/platform/add,1489181842,98b458,200
+98b458,::1,GET,http://localhost/Symfony/web/app_dev.php/platform/add,1489181842,,500
+31c849,127.0.0.1,GET,http://localhost/Symfony/web/app_dev.php/_fragment?_path=_format%3Dhtml%26_locale%3Den%26_controller%3DSalimPlateformeBundle%253AAdvert%253Amenu,1489181881,bb8edb,200
+bb8edb,::1,GET,http://localhost/Symfony/web/app_dev.php/platform/add,1489181881,,200

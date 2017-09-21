@@ -1,0 +1,34 @@
+{% extends 'ConciergerieBundle:Offline:index.html.twig' %}
+
+{% block TitrePage %}
+  <div class="container-fluid TitrePage">
+    <h2>Présentation de la conciergerie</h2>
+  </div>
+{% endblock %}
+
+{% block body %}
+
+  <section class="container">
+    <h3>Présentation de l'entreprise </h3>
+    <p>
+      Fondée en 2017 par deux diplômés de la MIAGE d'Orléans (45), la société Conciergerie d'Entreprise cherche à promouvoir le droit au bien être des salariés dans leurs entreprises. <br>
+      C'est sur cette conviction que l'entreprise doit être au plus proche de ses salariés si elle souhaite tirer le meilleur de chacun que les deux entrepreneurs ont décidé de créer l'entreprise
+      qui permet aux responsables de ressources humaines ou dirigeants d'entreprise de s'abonner à des "bouquets de services" afin d'y donner accès à leurs salariés et faciliter ainsi leur quotidien. <br>
+      Le site de Conciergerie compte aujourd'hui près de <b>200 entreprises</b> regroupant un total de <b>600 salariés inscrits</b>  et chaque jour  <b>20 nouveaux services sont proposés</b> par les prestataire partenaires du site.
+    </p>
+    <div class="col-lg-6">
+      <img class="img-reponsive" src="{{asset('images/conciergeriePicto.png')}}">
+    </div>
+    <div class="col-lg-6">
+      <h3>Qu'est ce que la Conciergerie d'Entreprise ?</h3>
+      <p>
+        De nombreux salariés se focalisent sur leur vie professionnelle et ne parviennent plus à <b>trouver du temps pour les tâches quotidiennes.</b><br>
+        C'est pour répondre à cette problématique qu'est née la Conciergerie d'Entreprise. Celle-ci <b>permet aux entreprises d'accompagner les salariés</b> dans leurs vie personnelles et de les aider en leur donnant accès à de nombreux services à prix préférentiels.<br>
+        Certains sites, comme celui-ci permettent en outre à n'importe quel prestataire qualifié de proposer ses services auxquels pourront passer commande les salariés des entreprises abonnées.
+      </p>
+    </div>
+
+
+  </section>
+
+{% endblock %}

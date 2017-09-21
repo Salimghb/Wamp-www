@@ -1,0 +1,63 @@
+{% extends 'ConciergerieBundle:Entreprise:index.html.twig' %}
+
+
+{% block body %}
+
+  <section class="container catalogue">
+
+    <div class="row">
+
+      <h3>Liste de vos abonnements</h3>
+
+      {% for flashMessage in app.session.flashbag.get('AbonnementAjout') %}
+
+        <h5 class="alert alert-success">{{flashMessage}}</h5>
+
+      {% endfor %}
+      {% for flashMessage in app.session.flashbag.get('AbonnementDelete') %}
+
+        <h5 class="alert alert-danger">{{flashMessage}}</h5>
+
+      {% endfor %}
+
+      {% if listeAbo is empty %}
+        <h4>Votre entreprise n'est abonnée à aucun bouquet</h4>
+      {% else %}
+
+        <table class="table table-bordered">
+
+          <tr>
+            <th>ID Abonnement</th>
+            <th>Bouquet</th>
+            <th>Début</th>
+            <th>Durée</th>
+            <th>Supprimer</th>
+          </tr>
+
+          {% for abonnement in listeAbo %}
+
+            <tr>
+              <td><a href="{{path('conciergerie_ECEntreprise_viewAbo',{'id':abonnement.id})}}">{{abonnement.id}}</a> </td>
+              <td>{{abonnement.bouquet.libelle|lower|capitalize}}</td>
+              <td>{{abonnement.dateDebut|date('d/m/Y')}}</td>
+              <td>{{abonnement.dureeAbo}} mois</td>
+              <td><a href="{{path('conciergerie_ECEntreprise_deleteAbo',{'id':abonnement.id})}}"><input type="button" class="btn btn-danger" value="Se désabonner"></a></td>
+            </tr>
+
+          {% endfor %}
+
+        </table>
+
+      {% endif %}
+
+    </div>
+
+    <br>
+
+    <div>
+      <a href=" {{path('conciergerie_ECEntreprise_addAbo')}} "><button type="button" class="btn btn-success">Ajouter un abonnement</button></a>
+    </div>
+
+  </section>
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'ConciergerieBundle:Offline:index.html.twig' %}
+
+{% block TitrePage %}
+  <div class="container-fluid TitrePage">
+    <h2>Nos services</h2>
+  </div>
+{% endblock %}
+
+{% block body %}
+
+  <section class="container">
+
+    <div class="row">
+        <div class="row">
+          <div class="col-lg-4">
+            <img class="img-responsive" width="80%"src="{{asset('images/serviceLivraison.jpg')}}">
+          </div>
+          <div class="col-lg-6">
+            <p>
+              <h3>Livraison : Faites livrer vos courses à domicile !</h3>
+
+              Un imprévu ce soir, vous devez rester plus longtemps que prévu au travail ? <b>Faites confiance à nos prestataires</b> et confiez leur la <b>livraison de vos courses à domicile</b> !
+              <br>
+              Pour un <b>tarif moyen de 10€</b> vous trouverez en quelques clics des <b>prestataires fiables</b> disponibles <b>dans votre ville.</b> Passez simplement commande puis fixez les modalités avec le prestataire. <b>Celui-ci s'engage à vous répondre dans les 24h !</b>
+            </p>
+          </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="row">
+          <div class="col-lg-4">
+            <img class="img-responsive" width="80%"src="{{asset('images/serviceCoiffure.png')}}">
+          </div>
+          <div class="col-lg-6">
+            <h3>Coiffure : </h3>
+            <p>
+              Il est parfois compliqué de trouver le temps pour un rendez vous chez le coiffeur... <b>Nos partenaires coiffeurs </b> vous proposent des prestations de coiffure de qualité <b>pour un prix à la coupe moyen de 20 €</b> (Hommes/Femmes confondus) <br>
+              Vous pouvez également pour certains d'entre eux demander à être coiffé sur votre lieu de travail pendant la pause, ou bien directement chez vous !
+            </p>
+          </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="row">
+          <div class="col-lg-4">
+            <img class="img-responsive" width="80%"src="{{asset('images/serviceSoin.jpg')}}">
+          </div>
+          <div class="col-lg-6">
+            <h3>Soins du corps : </h3>
+            <p>
+              Envie de vous détendre et de prendre un peu soin de vous après une journée de travail ? <b>Faites appel à nos prestataires </b> spécialisés dans le bien être et offrez vous un moment de bien être !
+            </p>
+          </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="row">
+          <div class="col-lg-4">
+            <img class="img-responsive" width="80%"src="{{asset('images/serviceEntretien.png')}}">
+          </div>
+          <div class="col-lg-6">
+            <h3>Entretien de la maison : </h3>
+            <p>
+              Et si vous déléguiez les tâches pénibles de l'entretien de votre maison à des spécialistes du domaine ? De nombreux prestataires (jardiniers, plombiers, agent d'entretien ou simples bricoleurs) proposent chaque jour leurs services sur notre site pour faciliter votre quotidien !
+            </p>
+          </div>
+        </div>
+    </div>
+  </section>
+
+{% endblock %}

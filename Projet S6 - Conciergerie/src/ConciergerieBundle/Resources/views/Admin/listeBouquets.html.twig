@@ -1,0 +1,61 @@
+{% extends 'ConciergerieBundle:Admin:index.html.twig' %}
+
+{% block body %}
+
+  <section class="container catalogue">
+
+    <div class="row">
+
+      <h3>
+        Liste des bouquets
+      </h3>
+
+      {% for flashMessage in app.session.flashbag.get('BouquetAjout') %}
+
+        <h5 class="alert alert-success">{{flashMessage}}</h5>
+
+      {% endfor %}
+      {% for flashMessage in app.session.flashbag.get('BouquetDelete') %}
+
+        <h5 class="alert alert-danger">{{flashMessage}}</h5>
+
+      {% endfor %}
+
+      {% if listeBouquets is empty %}
+        <br>
+        <h4>Aucun bouquet disponible</h4>
+      {% else %}
+
+        <table class="table table-bordered">
+
+          <tr>
+            <th>ID Bouquet</th>
+            <th>Libellé</th>
+            <th>Tarif</th>
+            <th>Supprimer</th>
+          </tr>
+
+          {% for bouquet in listeBouquets %}
+
+            <tr>
+              <td><a href="{{path('conciergerie_admin_bouquet',{'id':bouquet.id})}}">{{bouquet.id}}</a> </td>
+              <td>{{bouquet.libelle|lower|capitalize}}</td>
+              <td>{{bouquet.tarif}}€</td>
+              <td><a href="{{path('conciergerie_admin_deleteBouquet',{'id':bouquet.id})}}"><input type="button" class="btn btn-danger" value="Supprimer"></a></td>
+            </tr>
+
+          {% endfor %}
+
+        </table>
+
+      {% endif %}
+      <br>
+      <p>
+        <a href="{{path('conciergerie_admin_addBouquet')}}"><input type="button" class="btn btn-success" value="Ajouter un bouquet"></a>
+      </p>
+
+    </div>
+
+  </section>
+
+{% endblock %}

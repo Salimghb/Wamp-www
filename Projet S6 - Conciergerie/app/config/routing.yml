@@ -1,0 +1,19 @@
+conciergerie:
+  resource: "@ConciergerieBundle/Resources/config/routing.yml"
+  prefix:   /
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+# Surcharge du routing de FOSUserBundle Pour l'inscription
+fos_user_registration_register:
+    path:   /register/{role}
+    defaults:
+        _controller: FOSUserBundle:Registration:register
+        role: Salarie
+
+#Surcharge du /login de FOSUserBundle qui n'a pas vraiment d'utilité sur notre site
+fos_user_security_login:
+    path:   /login
+    defaults:
+        _controller: ConciergerieBundle:Offline:redirector

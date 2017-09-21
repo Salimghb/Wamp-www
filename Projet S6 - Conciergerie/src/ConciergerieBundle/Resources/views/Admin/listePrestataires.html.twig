@@ -1,0 +1,56 @@
+{% extends 'ConciergerieBundle:Admin:index.html.twig' %}
+
+{% block body %}
+
+  <section class="container catalogue">
+
+    <div class="row">
+
+      <h3>
+        Liste des prestataires
+      </h3>
+
+      {% for flashMessage in app.session.flashbag.get('PrestataireDelete') %}
+
+        <h5 class="alert alert-danger">{{flashMessage}}</h5>
+
+      {% endfor %}
+
+      {% if listePrestataires is empty %}
+        <br>
+        <h4>Aucune prestataire disponible</h4>
+      {% else %}
+
+        <table class="table table-bordered">
+
+          <tr>
+            <th>ID Prestataire</th>
+            <th>Nom / Raison Sociale</th>
+            <th>SIRET</th>
+            <th>Numéro de téléphone</th>
+            <th>Site web</th>
+            <th>Supprimer</th>
+          </tr>
+
+          {% for prestataire in listePrestataires %}
+
+            <tr>
+              <td><a href="{{path('conciergerie_admin_prestataire',{'id':prestataire.id})}}">{{prestataire.id}}</a> </td>
+              <td>{{prestataire.user.username|lower|capitalize}}</td>
+              <td>{{prestataire.siret}}</td>
+              <td>{{'+33' ~ prestataire.telephone}}</td>
+              <td><a href="http://{{prestataire.site}}">{{prestataire.site}}</a></td>
+              <td><a href="{{path('conciergerie_admin_deletePrestataire',{'id':prestataire.id})}}"><input type="button" class="btn btn-danger" value="Supprimer"></a></td>
+            </tr>
+
+          {% endfor %}
+
+        </table>
+
+      {% endif %}
+
+    </div>
+
+  </section>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'ConciergerieBundle:Prestataire:index.html.twig' %}
+
+
+{% block body %}
+<section class="container catalogue">
+
+  <h2>Historique des prestations délivrées</h2>
+  {% if CommandesValidePresta is empty %}
+    <p>Vous n'avez pas encore délivré de prestation. </p>
+  {% else %}
+    <table class="table table-bordered">
+          <tr>
+            <td>Date :</td>
+            <td>Service :</td>
+            <td>Client :</td>
+            <td>Montant :</td>
+          </tr>
+      {% for commande in CommandesValidePresta %}
+        <tr>
+          <td>le {{commande.date|date('d/m/Y')}}</td>
+            <td>{{commande.service.libelle}}</td>
+            <td>{{commande.salarie.prenom}} {{commande.salarie.nom}}</td>
+            <td>{{commande.service.tarif}} €</td>
+        </tr>
+      {% endfor %}
+    </table>
+
+  {% endif %}
+
+
+</section>
+{% endblock %}

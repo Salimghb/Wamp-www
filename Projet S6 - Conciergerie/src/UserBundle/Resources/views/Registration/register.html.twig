@@ -1,0 +1,17 @@
+{% extends "ConciergerieBundle::layout.html.twig" %}
+
+{% block user_info %}{% endblock %}
+
+{% block TitrePage %}
+<div class="container-fluid TitrePage">
+  <h2>Inscription {{role}}</h2>
+</div>
+{% endblock %}
+
+{% block body %}
+
+{% block fos_user_content %}
+{{ include('UserBundle:Registration:register_content.html.twig') }}
+
+{% endblock fos_user_content %}
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'ConciergerieBundle:Entreprise:index.html.twig' %}
+
+
+{% block body %}
+  <section class="container catalogue">
+    <div class="row">
+      <h2>Abonnement</h2>
+    </div>
+    {% for message in app.session.flashbag.get('BlockAboSupp') %}
+      <h5 class="alert alert-info">Action impossible : {{ message }}</h5>
+    {% endfor %}
+    
+    {{ form_start(form, {'method': 'post', 'action': path('conciergerie_ECEntreprise_addAbo'), 'attr': {'class': ''}}) }}
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.bouquet, {'attr': {'class':'form-control'},'label':'Bouquet souhaité :'}) }}
+    </div>
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.dureeAbo, {'attr': {'class':'form-control','placeholder':'Durée de l\'abonnement'},'label':'Nombre de mois d\'abonnement :'}) }}
+    </div>
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.dateDebut, {'attr': {'class':'form-control'},'label':'Début de l\'abonnement :'}) }}
+    </div>
+
+    <p></p>
+    <p>
+
+      <input type="submit" class="btn btn-success sub-btn" value="Valider" />
+
+      <a href="{{ path('conciergerie_ECEntreprise_listeAbo')}}" class="btn btn-warning">
+
+        Retour à la liste des abonnements
+
+      </a>
+
+    </p>
+    
+
+    {{form_end(form)}}
+
+  </section>
+
+{% endblock %}

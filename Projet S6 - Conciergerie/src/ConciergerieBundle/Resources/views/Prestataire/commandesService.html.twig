@@ -1,0 +1,85 @@
+{% extends 'ConciergerieBundle:Prestataire:index.html.twig' %}
+
+
+{% block body %}
+  <section class="container catalogue">
+
+    <h2>Commandes en attente de validation :</h2>
+      {% if commandesEnAttente is empty %}
+      <p>Aucune commande en attente pour ce service</p>
+      {% else %}
+      <table class="table table-bordered">
+        <tr>
+          <td>N° de commande :</td>
+          <td>Client : </td>
+          <td>Commande passée le : </td>
+          <td>Compléments : </td>
+          <td>Action : </td>
+        </tr>
+
+        {% for commande in commandesEnAttente %}
+          <tr>
+            <td>{{commande.id}}</td>
+            <td>{{commande.salarie.prenom}} {{commande.salarie.nom}}</td>
+            <td>{{commande.date|date('d M Y à H:i')}}</td>
+            <td>{{commande.complements}}</td>
+            <td><a href="{{path('conciergerie_ECPrestataire_validerCommande',{'id':commande.id})}}"><input type="button" class="btn btn-success" value="Valider commande"></a> </td>
+          </tr>
+        {% endfor %}
+      </table>
+
+      {% endif %}
+
+
+    <h2>Commandes en attente de règlement :</h2>
+      {% if commandesNonRegle is empty %}
+      <p>Aucune commande en attente de règlement pour ce service</p>
+      {% else %}
+      <table class="table table-bordered">
+        <tr>
+          <td>N° de commande :</td>
+          <td>Client : </td>
+          <td>Commande passée le : </td>
+        </tr>
+
+        {% for commande in commandesNonRegle %}
+          <tr>
+            <td>{{commande.id}}</td>
+            <td>{{commande.salarie.prenom}} {{commande.salarie.nom}}</td>
+            <td>{{commande.date|date('d M Y à H:i')}}</td>
+          </tr>
+        {% endfor %}
+      </table>
+      {% endif %}
+
+      <h2>Commandes réglées en attente de livraison</h2>
+      {% if commandesNonLivre is empty %}
+      <p>Aucune commande en attente de livraison pour ce service</p>
+      {% else %}
+      <div class="alert alert-success col-lg-12">
+        <p>Les commandes ci-dessous ont bien été réglées, n'oubliez pas d'entrer en contact avec le client pour procéder à la livraison du service.</p>
+      </div>
+      <table class="table table-bordered">
+        <tr>
+          <td>N° de commande :</td>
+          <td>Client : </td>
+          <td>Numéro de téléphone : </td>
+          <td>Adresse mail : </td>
+
+        </tr>
+
+        {% for commande in commandesNonLivre %}
+          <tr>
+            <td>{{commande.id}}</td>
+            <td>{{commande.salarie.prenom}} {{commande.salarie.nom}}</td>
+            <td>{{commande.salarie.telephone}}</td>
+            <td>{{commande.salarie.user.email}}</td>
+          </tr>
+        {% endfor %}
+      </table>
+      {% endif %}
+
+
+
+  </section>
+{% endblock %}

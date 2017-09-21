@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang ="fr">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="description" content="Conciergerie d'entreprise : Vous êtes dirigeant d'entreprise ? Souscrivez à l'un de nos bouquets de services. Vos salariés pourront souscrire à ces services depuis notre site. Vous êtes prestataire ? Proposez vos services dans notre catalogue.">
+  <link rel="stylesheet" href= "{{asset('css/bootstrap.css')}}">
+  <link rel="stylesheet" href="{{asset('css/style.css')}}">
+  <title>
+    {% block title %}
+      Conciergerie d'entreprise : Une large gamme de services pour les salariés
+    {% endblock %}
+  </title>
+
+</head>
+
+<body>
+
+  <section class="container-fluid header">
+
+    <div class="row">
+
+      <div class="col-lg-3 col-md-3 col-sm-5 col-xs-6 bloc_logo">
+        <a href= {% block redirectHome %}"{{path('conciergerie_homepage')}}"{% endblock %}><img class="img-responsive logo" src="{{asset('images/logo.png')}}" alt="logo"></a>
+      </div>
+
+      <div class="barre_nav col-lg-5">
+
+        {% block navbar %}
+
+          <a href="{{path('conciergerie_infosConciergerie')}}"><button type="button" class="btn btn-default">Qui sommes nous ?</button></a>
+
+          <a href="{{path('conciergerie_services')}}"><button type="button" class="btn btn-default">Nos services</button></a>
+
+          <a href=" {{path('conciergerie_contact')}} "><button type="button" class="btn btn-default">Nous contacter</button></a>
+
+          <!-- Cette option de la navbar s'active uniquement quand un utilisateur est connecté et le redirige vers son espace client -->
+          {% if is_granted('ROLE_SALARIE') %}
+
+            <a href=" {{path('conciergerie_ECSalarie')}} "><button type="button" class="btn btn-default">Espace Client</button></a>
+
+          {% elseif is_granted('ROLE_ENTREPRISE') %}
+
+            <a href=" {{path('conciergerie_ECEntreprise')}} "><button type="button" class="btn btn-default">Espace Client</button></a>
+
+          {% elseif is_granted('ROLE_PRESTATAIRE') %}
+
+            <a href=" {{path('conciergerie_ECPrestataire')}} "><button type="button" class="btn btn-default">Espace Client</button></a>
+
+          {% elseif is_granted('ROLE_ADMIN') %}
+
+            <a href=" {{path('conciergerie_admin')}} "><button type="button" class="btn btn-default">Administration</button></a>
+          {% endif %}
+          <!-- Fin de l'option occasionnelle -->
+
+        {% endblock %}
+
+      </div>
+
+
+      <div class="user_info col-lg-4">
+
+        {% block user_info %}
+          {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <div class="logged_block">
+              <b>Connecté en tant que {{ app.user.username|lower|capitalize }} - <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+              </b>
+            </div>
+          {% else %}
+            {{ render(controller('FOSUserBundle:Security:loginBis')) }}
+          {% endif %}
+        {% endblock %}
+
+      </div>
+
+    </section>
+
+
+    {% block TitrePage %}
+
+    {% endblock %}
+
+
+    {% block body %}
+
+    {% endblock %}
+
+    <footer class="footer">
+      <ul class="nav nav-pills">
+        <li role="presentation"><a href="">Copyright 2016 - Conciergerie d'entreprise</a></li>
+        <li role="presentation"><a href="">Mentions légales</a></li>
+        <li role="presentation"><a href="">Conditions d'utilisation</a></li>
+        <li role="presentation"><a href="{{path('conciergerie_contact')}}">Contactez-nous</a></li>
+      </ul>
+    </footer>
+  </body>
+
+  </html>

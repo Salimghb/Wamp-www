@@ -1,0 +1,32 @@
+{% extends 'ConciergerieBundle:Admin:index.html.twig' %}
+
+
+{% block body %}
+  <section class="container catalogue">
+    <div class="row">
+      <h2>Supprimer une entreprise</h2>
+    </div>
+    
+    <p>
+      Etes-vous certain de vouloir supprimer l'entreprise "{{ entreprise.user.username|lower|capitalize}}" ?
+    </p>
+
+    <h5 class="alert alert-danger">La suppression d'une entreprise entrainera la suppression de tous ses abonnements ainsi que, pour tous les salariés de l'entreprise, la suppression de leur affiliation à celle-ci !</h5>
+
+    <form action="{{ path('conciergerie_admin_deleteEntreprise', {'id': entreprise.id}) }}" method="post">
+
+      <input type="submit" value="Supprimer" class="btn btn-danger" />
+
+      <a href="{{ path('conciergerie_admin_entreprise', {'id': entreprise.id}) }}" class="btn btn-warning">
+
+        Retour aux informations de l'entreprise
+
+      </a>
+
+      {{ form_rest(form) }}
+
+    </form>
+
+  </section>
+
+{% endblock %}

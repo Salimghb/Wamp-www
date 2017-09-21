@@ -1,0 +1,32 @@
+{% extends 'ConciergerieBundle:Admin:index.html.twig' %}
+
+{% block body %}
+
+  <section class="container catalogue">
+
+    <div class="row">
+
+      <h3>Détails de l'abonnement {{abonnement.id}}</h3>
+
+      <p><b>Entreprise abonnée : </b><a href="{{path('conciergerie_admin_entreprise',{'id':abonnement.entreprise.id})}}">{{abonnement.entreprise.user.username|lower|capitalize}}</a></p>
+      <p><b>Bouquet : </b><a href="{{path('conciergerie_admin_bouquet',{'id':abonnement.bouquet.id})}}">{{abonnement.bouquet.libelle|lower|capitalize}}</a></p>
+      <p><b>Début : </b>{{abonnement.dateDebut|date('d/m/Y')}}</p>
+      <p><b>Fin : </b>{{abonnement.dateFin|date('d/m/Y')}}</p>
+      <p><b>Durée : </b>{{abonnement.dureeAbo}} mois</p>
+
+      <p>
+        <b>Types de service inclus : </b><br>
+        {% for type in abonnement.bouquet.typesService %}
+          - {{type.libelle|lower|capitalize}}<br>
+        {% endfor %}
+      </p>
+      <p>
+        <a href="{{path('conciergerie_admin_deleteAbonnement',{'id':abonnement.id})}}"><button type="button" class="btn btn-danger">Supprimer l'abonnement</button></a>
+
+        <a href=" {{path('conciergerie_admin_abonnements')}} "><button type="button" class="btn btn-warning">Retour à la liste des abonnements</button></a>
+      </p>
+    </div>
+
+  </section>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "ConciergerieBundle::layout.html.twig" %}
+
+{% block user_info %}{% endblock %}
+
+{% block TitrePage %}
+<div class="container-fluid TitrePage">
+  <h2>Inscription : Choix du type d'utilisateur</h2>
+</div>
+{% endblock %}
+
+{% block body %}
+<div class="container blocChoixRole">
+
+  <a href="{{path('fos_user_registration_register',{'role':'Entreprise'}) }}">
+    <div class="ChoixRole col-lg-4">
+      <h2>Entreprise </h2>
+      <p>Souscrivez à des bouquets de services auxquels vos salariés auront accès et simplifiez leur quotidien !</p>
+    </div>
+  </a>
+
+  <a href="{{path('fos_user_registration_register',{'role':'Prestataire'}) }}">
+    <div class="ChoixRole col-lg-4">
+      <h2>Prestataire</h2>
+      <p>Proposez vos services sur notre site et faites vous rémunérer !</p>
+    </div>
+  </a>
+
+  <a href="{{path('fos_user_registration_register',{'role':'Salarie'}) }}">
+    <div class="ChoixRole col-lg-4">
+      <h2>Salarié </h2>
+      <p>Commandez des services de qualité parmi le bouquet souscit par votre entreprise !</p>
+    </div>
+  </a>
+
+</div>
+
+
+
+{% endblock %}

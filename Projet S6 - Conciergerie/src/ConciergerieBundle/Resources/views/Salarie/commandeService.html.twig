@@ -1,0 +1,38 @@
+{% extends 'ConciergerieBundle:Salarie:index.html.twig' %}
+
+{% block body %}
+
+  <section class="container">
+    <div class="alert alert-warning">
+      <p>En confirmant une commande, vous informez le prestataire de votre intérêt pour son service. <br>
+        Celui-ci sera notifié et pourra valider votre commande dès qu'il sera disponible pour vous délivrer sa prestation. <br>
+        Vous serez informé de sa confirmation et pourrez depuis l'onglet "mes commandes" régler le service en question
+        pour pouvoir ensuite entrer en contact avec le prestataire et convenir ensemble des modalités de livraison du service.
+      </p>
+    </div>
+    <h3> {{service.libelle}}</h3>
+    <p><b>Catégorie : </b> {{service.type.libelle}}</p>
+    <p><b>Prestataire : </b> {{service.prestataire.user.username|lower|capitalize}}</p>
+    <p><b>Description : </b> {{service.description}}</p>
+    <p><b>Tarif : </b> {{service.tarif}}€</p>
+    <form action="{{path('conciergerie_ECSalarie_ConfirmCommande',{'id':service.id})}}" method="post">
+      <div class="input-group col-xs-8">
+        <label>Informations complémentaires : </label>
+        <textarea class="form-control" name="complements" rows="3" cols="80" placeholder="Vous souhaitez obtenir une information spécifique à propos du service ? Vos horaires sont particuliers et vous voulez prévenir le prestataire ? Précisez toute information utile à la commande dans ce bloc."></textarea>
+      </div>
+      <br>
+      <input type="submit" class="btn btn-success" value="Confirmer la commande du service">
+
+      <a href="{{path('conciergerie_ECSalarie')}}">
+        <input type="button" class="btn btn-warning" value="Retour à la liste des services">
+      </a>
+    </form>
+
+      <br>
+
+
+
+
+  </section>
+
+{% endblock %}

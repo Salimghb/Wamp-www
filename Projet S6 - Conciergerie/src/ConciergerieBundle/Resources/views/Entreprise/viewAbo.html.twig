@@ -1,0 +1,33 @@
+{% extends 'ConciergerieBundle:Entreprise:index.html.twig' %}
+
+
+{% block body %}
+  <section class="container catalogue">
+    <div class="row">
+      <h2>Abonnement au bouquet {{bouquet.id}} : '{{bouquet.libelle|lower|capitalize}}'</h2>
+    </div>
+
+    <div class="row">
+
+      <p><b>Tarif mensuel :</b> {{bouquet.tarif}}€</p>
+      <p><b>Abonné depuis le :</b> {{abonnement.dateDebut|date("d/m/Y")}}</p>
+      <p><b>Durée prévisionnelle de l'abonnement :</b> {{abonnement.dureeAbo}} mois</p>
+      <p><b>Types de service inclus :</b><br>
+        {% for type in bouquet.typesService %}
+          - {{type.libelle}} <br>
+        {% endfor %}
+      </p>
+
+      <p>
+
+        <a href=" {{path('conciergerie_ECEntreprise_deleteAbo', {'id':abonnement.id})}} "><button type="button" class="btn btn-danger">Supprimer l'abonnement</button></a>
+
+        <a href=" {{path('conciergerie_ECEntreprise_listeAbo')}} "><button type="button" class="btn btn-warning">Retour à la liste des abonnements</button></a>
+
+      </p>
+
+    </div>
+
+  </section>
+
+{% endblock %}

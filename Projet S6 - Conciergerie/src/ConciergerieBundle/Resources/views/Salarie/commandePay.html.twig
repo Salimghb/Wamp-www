@@ -1,0 +1,42 @@
+{% extends 'ConciergerieBundle:Salarie:index.html.twig' %}
+
+{% block body %}
+
+  <section class="container">
+    <div class="alert alert-info">
+      <p>Le prestataire a validé votre commande. Il s'engage donc à vous livrer le service convenu dès que vous aurez réglé cette commande.</p>
+    </div>
+    <h3> {{service.libelle}}</h3>
+    <p><b>Catégorie : </b> {{service.type.libelle}}</p>
+    <p><b>Prestataire : </b> {{service.prestataire.user.username|lower|capitalize}}</p>
+    <p><b>Description : </b> {{service.description}}</p>
+    <p><b>Tarif : </b> {{service.tarif}}€</p>
+    <form action="{{path('conciergerie_ECSalarie_confirmPay',{'id':commande.id})}}" method="post">
+      <div class="input-group col-xs-8">
+        <label>Choix du mode de paiement : </label>
+        <select class="form-control" name="modePaiement">
+          <option value="CB Visa">Carte de paiement VISA</option>
+          <option value="CB MasterCard">Carte de paiement VISA</option>
+          <option value="Paypal">Paiement électronique par Paypal</option>
+          <option value="Cheque">Chèque emploi service</option>
+        </select>
+      </div>
+      <p class="alert alert-warning">Si vous choisissez de régler par chèque emploi service, vous vous engagez à régler ce service auprès du prestataire avant toute livraison du service. <br>Celui-ci se réserve le droit, en cas de refus de paiement, de ne pas délivrer la prestation voulue</p>
+
+      <input type="checkbox" required> J'accepte les conditions générales d'utilisation. <br>
+
+      <input type="submit" class="btn btn-success" value="Règlement de la commande">
+
+      <a href="{{path('conciergerie_ECSalarie')}}">
+        <input type="button" class="btn btn-warning" value="Retour à la liste des services">
+      </a>
+    </form>
+
+      <br>
+
+
+
+
+  </section>
+
+{% endblock %}

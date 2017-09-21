@@ -1,0 +1,61 @@
+{% extends 'ConciergerieBundle:Entreprise:index.html.twig' %}
+
+
+{% block body %}
+  
+  <section class="container catalogue">
+
+    <div class="row">
+      <h2>Liste de vos salariés :</h2>
+    </div>
+
+    {% for flashMessage in app.session.flashbag.get('SalarieAjout') %}
+
+      <h5 class="alert alert-success">{{flashMessage}}</h5>
+
+    {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('SalarieDelete') %}
+
+      <h5 class="alert alert-danger">{{flashMessage}}</h5>
+
+    {% endfor %}
+
+    <div class="row">
+
+      {% if listeSalaries is empty %}
+
+        <h4> Votre entreprise ne compte encore aucun salarié! </h4>
+
+      {% else %}
+
+        <table class="table table-bordered">
+
+          <tr>
+            <th>ID Salarié</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Date de naissance</th>
+          </tr>
+
+          {% for salarie in listeSalaries %}
+
+            <tr>
+              <td><a href="{{path('conciergerie_ECEntreprise_viewSalarie',{'id':salarie.id})}}">{{salarie.id}}</a> </td>
+              <td>{{salarie.nom|lower|capitalize}}</td>
+              <td>{{salarie.prenom|lower|capitalize}}</td>
+              <td>{{salarie.dateNaissance|date('d/m/Y')}}</td>
+            </tr>
+
+          {% endfor %}
+
+        </table>
+
+      {% endif %}
+
+      <a href=" {{path('conciergerie_ECEntreprise_addSalarie')}} "><button type="button" class="btn btn-success">Ajouter des salariés</button></a>
+
+    </div>
+
+  </section>
+
+{% endblock %}

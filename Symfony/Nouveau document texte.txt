@@ -1,0 +1,16 @@
+-- Abonnement
+?? Admin
+-- Adresse
+-- Bouquet
+-- Commande
+-- Commentaire
+?? Entreprise
+-- EtatCommande
+-- EtatFacture
+-- Facture
+?? Prestataire
+?? Salarie
+-- Service
+TypeFacture
+TypeService
+?? User

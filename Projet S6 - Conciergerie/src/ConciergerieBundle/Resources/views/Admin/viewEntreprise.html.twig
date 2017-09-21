@@ -1,0 +1,42 @@
+{% extends 'ConciergerieBundle:Admin:index.html.twig' %}
+
+
+
+{% block body %}
+
+  <section class="container catalogue">
+
+    <div class="row">
+
+      <h3>Détails de l'entreprise {{entreprise.id}}</h3>
+      
+      <p><b>Raison Sociale : </b>{{entreprise.user.username|lower|capitalize}}</p>
+      <p><b>SIRET : </b>{{entreprise.siret|lower|capitalize}}</p>
+      <p><b>Responsable : </b>{{entreprise.responsable}}</p>
+      <p><b>Téléphone : </b>+33{{entreprise.telephone}}</p>
+      <p><b>Ville : </b> {{entreprise.adresse.ville|lower|capitalize}} </p>
+      <p><b>Liste des abonnements : </b> <br>
+        {% for abonnement in entreprise.abonnements %}
+          - <a href="{{path('conciergerie_admin_abonnement',{'id':abonnement.id})}}">{{abonnement.id}}</a><br>
+        {% endfor %}
+      </p>
+      <p><b>Liste des salariés : </b> <br>
+        {% if entreprise.salaries is empty %}
+          Cette entreprise ne compte pour le moment aucun salarié
+        {% else %}
+          {% for salarie in entreprise.salaries %}
+            - {{salarie.prenom|lower|capitalize ~ " " ~ salarie.nom|lower|capitalize}} 
+            <br>
+          {% endfor %}
+        {% endif %}
+      </p>
+      <p>
+        <a href="{{path('conciergerie_admin_deleteEntreprise',{'id':entreprise.id})}}"><button type="button" class="btn btn-danger">Supprimer l'entreprise</button></a>
+
+        <a href=" {{path('conciergerie_admin_entreprises')}} "><button type="button" class="btn btn-warning">Retour à la liste des entreprises</button></a>
+      </p>
+    </div>
+
+  </section>
+
+{% endblock %}

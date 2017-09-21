@@ -1,0 +1,88 @@
+{% extends 'ConciergerieBundle:Prestataire:index.html.twig' %}
+
+
+{% block body %}
+  <section class="container catalogue">
+    <h2>Modification des informations</h2>
+
+    {% for message in app.session.flashbag.get('notice') %}
+    <div class="alert alert-success">
+      {{message}}
+    </div>
+    {% endfor %}
+    
+    <!-- Début du formulaire d'édition de compte prestataire -->
+
+    {{ form_start(form, {'method': 'post', 'action': path('conciergerie_ECPrestataire_monCompte'), 'attr': {'class': 'Bloc_Inscription container'}}) }}
+
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.email, {'attr': {'class':'form-control','placeholder':'Entrez votre adresse mail'},'label':'Adresse mail :'}) }}
+    </div>
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.username, {'attr': {'class':'form-control', 'placeholder':'Votre identifiant de connexion'},'label':"Nom d'utilisateur :"}) }}
+    </div>
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.plainPassword.first, {'attr': {'class':'form-control', 'placeholder':'Saisissez votre mot de passe (6 caractères minimum)'},'label':"Nouveau mot de passe :"}) }}
+    </div>
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.plainPassword.second, {'attr': {'class':'form-control', 'placeholder':'Confirmez votre mot de passe'},'label':"Confirmation mot de passe :"}) }}
+    </div>
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.prestataire.siret, {'attr': {'class':'form-control', 'placeholder':'Entrez les 10 chiffres de votre N° de SIRET'},'label':"Numéro de SIRET :"}) }}
+    </div>
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.prestataire.responsable, {'attr': {'class':'form-control', 'placeholder':'Nom et prénom du responsable'},'label':"NOM et Prénom du responsable :"}) }}
+    </div>
+
+    <div class="input-group col-xs-8">
+      <label>Adresse du prestataire :</label>
+      {{ form_row(form.prestataire.adresse.num, {'attr': {'class':'form-control', 'placeholder':'Numéro de la rue (ex : 219)'}}) }}
+    </div>
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.prestataire.adresse.rue, {'attr': {'class':'form-control', 'placeholder':'Nom de la rue (ex : Rue du Pressoir Neuf)'}}) }}
+    </div>
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.prestataire.adresse.ville, {'attr': {'class':'form-control', 'placeholder':'Ville (ex : Ouvrouer-Les-Champs)'}}) }}
+    </div>
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.prestataire.adresse.codePostal, {'attr': {'class':'form-control', 'placeholder':'Code Postal (ex : 45192)'}}) }}
+    </div>
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.prestataire.adresse.numAppart, {'attr': {'class':'form-control', 'placeholder':'Numéro appartement ou batiment(ex : 12)'}}) }}
+    </div>
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.prestataire.adresse.etage, {'attr': {'class':'form-control', 'placeholder':'Numéro étage (ex : 2)'}}) }}
+    </div>
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.prestataire.adresse.complements, {'attr': {'class':'form-control', 'placeholder':'Informations complémentaires (ex : Sonette sur la gauche)'}}) }}
+    </div>
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.prestataire.telephone, {'attr': {'class':'form-control', 'placeholder':'Téléphone du responsable'},'label':"Numéro de téléphone :"}) }}
+    </div>
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.prestataire.site, {'attr': {'class':'form-control', 'placeholder':"URL du site de l'entreprise" },'label':"Site internet :"}) }}
+    </div>
+
+    <div class="input-group col-xs-8">
+      <input type="submit" class="btn btn-primary sub-btn" value="Valider les changements" />
+    </div>
+
+    {{ form_end(form) }}
+
+  </section>
+
+{% endblock %}

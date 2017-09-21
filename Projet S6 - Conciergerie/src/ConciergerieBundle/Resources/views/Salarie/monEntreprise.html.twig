@@ -1,0 +1,42 @@
+{% extends 'ConciergerieBundle:Salarie:index.html.twig' %}
+
+{% block body %}
+
+  <section class="container">
+    {% if salarie.entreprise is null %}
+      <h3>Oups...Vous ne semblez être affilié à aucune entreprise pour le moment.</h3>
+      <p>Si vous venez de créer ce compte, n'oubliez pas de prévenir la personne de votre responsable des ressources humaines de votre entreprise pour que celle-ci puisse vous ajouter à sa liste sur le site.</p>
+
+    {% else %}
+      <h2>{{salarie.entreprise.user.username|lower|capitalize}} </h2>
+      <p><b>Responsable : </b> {{salarie.entreprise.responsable}}</p>
+      <p><b>Téléphone : </b> +33{{salarie.entreprise.telephone}}</p>
+      <p><b>Adresse email : </b> {{salarie.entreprise.user.email}}</p>
+      <p><b>Adresse postale : </b> {{salarie.entreprise.adresse.num }} {{salarie.entreprise.adresse.rue}}, {{salarie.entreprise.adresse.codePostal}}, {{salarie.entreprise.adresse.ville}}</p>
+      <p><b>Site internet : </b> <a href="http://{{salarie.entreprise.site}}">{{salarie.entreprise.site}}</a></p>
+
+      <h3>Liste des abonnements de l'entreprise : </h3>
+      {% if salarie.entreprise.abonnements is empty %}
+        <p>
+          Votre entreprise n'est pour l'instant abonnée à aucun bouquet.
+        </p>
+      {% else %}
+        {% for abonnement in salarie.entreprise.abonnements %}
+          <p><b>- {{abonnement.bouquet.libelle}} :</b>
+            {% for type in abonnement.bouquet.typesService %}
+            {{type.libelle}}
+              {% if not loop.last %}
+              , 
+              {% endif %}
+            {% endfor %}
+          </p>
+        {% endfor %}
+      {% endif %}
+    {% endif %}
+
+
+
+
+  </section>
+
+{% endblock %}

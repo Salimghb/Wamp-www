@@ -1,0 +1,56 @@
+{% extends 'ConciergerieBundle:Admin:index.html.twig' %}
+
+{% block body %}
+
+  <section class="container catalogue">
+
+    <div class="row">
+
+      <h3>
+        Liste des commandes
+      </h3>
+
+      {% for flashMessage in app.session.flashbag.get('CommandeDelete') %}
+
+        <h5 class="alert alert-danger">{{flashMessage}}</h5>
+
+      {% endfor %}
+
+      {% if listeCommandes is empty %}
+        <br>
+        <h4>Aucune commande disponible</h4>
+      {% else %}
+
+        <table class="table table-bordered">
+
+          <tr>
+            <th>ID Commande</th>
+            <th>Service commandé</th>
+            <th>Client</th>
+            <th>Montant</th>
+            <th>Date</th>
+            <th>Supprimer</th>
+          </tr>
+
+          {% for commande in listeCommandes %}
+
+            <tr>
+              <td><a href="{{path('conciergerie_admin_commande',{'id':commande.id})}}">{{commande.id}}</a></td>
+              <td>{{commande.service.libelle}}</td>
+              <td>{{commande.salarie.prenom|lower|capitalize ~ " " ~ commande.salarie.nom|lower|capitalize}}</td>
+              <td>{{commande.service.tarif}}€</td>
+              <td>{{commande.date|date('d/m/Y')}}</td>
+              <td><a href="{{path('conciergerie_admin_deleteCommande',{'id':commande.id})}}"><input type="button" class="btn btn-danger" value="Supprimer"></a></td>
+            </tr>
+
+          {% endfor %}
+
+        </table>
+
+      {% endif %}
+
+    </div>
+
+  </section>
+
+{% endblock %}

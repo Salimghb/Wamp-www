@@ -1,0 +1,36 @@
+{% extends 'ConciergerieBundle:Entreprise:index.html.twig' %}
+
+
+{% block body %}
+
+  <section class="container catalogue">
+
+    <div class="row">
+      <h3>Détails du salarié {{salarie.id}}</h3>
+    </div>
+
+    <div class="row">
+
+      <p><b>Nom :</b> {{salarie.nom|upper}}</p>
+      <p><b>Prenom :</b> {{salarie.prenom|lower|capitalize}}</p>
+
+      {% if salarie.sexe == 'h' %}
+        <p><b>Sexe :</b> Homme</p>
+      {% else %}
+        <p><b>Sexe :</b> Femme</p>
+      {% endif %}
+
+      <p><b>Date de naissance :</b> {{salarie.dateNaissance|date("d/m/Y")}}</p>
+      <p><b>Ville :</b> {{salarie.adresse.ville}}</p>
+
+      <p>
+        <a href=" {{path('conciergerie_ECEntreprise_deleteSalarie', {'id':salarie.id})}} "><button type="button" class="btn btn-danger">Supprimer le salarié</button></a>
+
+        <a href=" {{path('conciergerie_ECEntreprise_listeSalaries')}} "><button type="button" class="btn btn-warning">Retour à la liste des salariés</button></a>
+      </p>
+
+    </div>
+
+  </section>
+
+{% endblock %}

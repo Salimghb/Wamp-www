@@ -1,0 +1,40 @@
+{% extends 'ConciergerieBundle:Admin:index.html.twig' %}
+
+
+{% block body %}
+
+  <section class="container catalogue">
+
+    <div class="row">
+
+      <h3>Détails de la commande {{commande.id}}</h3>
+
+      <p><b>Salarié demandeur : </b>{{commande.salarie.prenom|lower|capitalize ~ " " ~ commande.salarie.nom|lower|capitalize}}</p>
+      <p><b>Entreprise responsable : </b>
+        {% if commande.salarie.entreprise is null %}
+          Ce salarié n'est affilié à aucune entreprise !
+        {% else %}
+          <a href="{{path('conciergerie_admin_entreprise',{'id':commande.salarie.entreprise.id})}}">
+            {{commande.salarie.entreprise.user.username|lower|capitalize}}
+          </a>
+        {% endif %}
+      </p>
+      <p><b>Prestataire responsable : </b><a href="{{path('conciergerie_admin_prestataire',{'id':commande.service.prestataire.id})}}">
+            {{commande.service.prestataire.user.username|lower|capitalize}}
+          </a></p>
+      <p><b>Service commandé : </b>{{commande.service.libelle|lower|capitalize}}</p>
+      <p><b>Tarif : </b>{{commande.service.tarif}}€</p>
+      <p><b>Commandé le {{commande.date|date("d/m/Y")}} </b>à {{commande.date|date("H:i:s")}} </p>
+      <p><b>Etat : </b>{{commande.etat.libelle}} </p>
+        <p><b>Type du service : </b>{{commande.service.type.libelle|lower|capitalize}}</p>
+        <p><b>Informations complémentaires : </b> {{commande.complements}} </p>
+        <p>
+          <a href="{{path('conciergerie_admin_deleteCommande',{'id':commande.id})}}"><button type="button" class="btn btn-danger">Supprimer la commande</button></a>
+
+          <a href=" {{path('conciergerie_admin_commandes')}} "><button type="button" class="btn btn-warning">Retour à la liste des commandes</button></a>
+        </p>
+      </div>
+
+    </section>
+
+  {% endblock %}

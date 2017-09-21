@@ -1,0 +1,47 @@
+{% extends 'ConciergerieBundle:Prestataire:index.html.twig' %}
+
+
+{% block body %}
+<section class="container catalogue">
+  <h2>Modification du service :</h2>
+  {{ form_start(form, {'method': 'post', 'action': path('conciergerie_ECPrestataire_service',{'id':service.id}), 'attr': {'class': ''}}) }}
+
+  <div class="input-group col-xs-8">
+    {{ form_row(form.libelle, {'attr': {'class':'form-control','placeholder':'Saisissez un titre pour votre service'},'label':"Titre du service :"}) }}
+  </div>
+
+  <div class="input-group col-xs-8">
+    {{ form_row(form.type, {'attr': {'class':'form-control'},'label':"Type de service :"}) }}
+  </div>
+
+  <div class="input-group col-xs-8">
+    {{ form_row(form.description, {'attr': {'class':'form-control','placeholder':'Présentez votre service en quelques lignes...(500 caractères max)'},'label':"Description du service :"}) }}
+  </div>
+
+  <div class="input-group col-xs-8">
+    {{ form_row(form.tarif, {'attr': {'class':'form-control','placeholder':'Saisissez le prix en € de votre service'},'label':"Tarif (en €) :"}) }}
+  </div>
+
+  <div class="input-group col-xs-8">
+
+    <input type="submit" class="btn btn-success sub-btn" value="Valider la modification" />
+  </div>
+
+  {{form_end(form)}}
+
+  <h2>Commentaires reçus pour ce service : </h2>
+
+  {% if service.commentaires is empty %}
+    <p>Vous n'avez pas encore reçu d'avis pour ce service !</p>
+  {% else %}
+      {% for commentaire in service.commentaires %}
+          {% if commentaire.published == true %}
+            <p><b>{{commentaire.salarie.prenom}} {{commentaire.salarie.nom}} : </b>
+              {{commentaire.contenu}}
+            </p>
+          {% endif %}
+
+      {% endfor %}
+  {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'ConciergerieBundle:Admin:index.html.twig' %}
+
+{% block body %}
+
+  <section class="container catalogue">
+
+    <div class="row">
+
+      <h3>Détails du bouquet {{bouquet.id}}</h3>
+      
+      <p><b>Libelle : </b>{{bouquet.libelle|lower|capitalize}}</p>
+      <p><b>Tarif mensuel : </b>{{bouquet.tarif}}€</p>
+      <p><b>Types de service inclus : </b><br>
+        {% for type in bouquet.typesService %}
+          - {{type.libelle|lower|capitalize}}<br>
+        {% endfor %}
+      </p>
+      <p><b>Entreprises abonnées : </b><br>
+        {% for abonnement in bouquet.abonnements %}
+          - <a href="{{path('conciergerie_admin_entreprise',{'id':abonnement.entreprise.id})}}">{{abonnement.entreprise.user.username|lower|capitalize}}</a><br>
+        {% endfor %}
+      </p>
+      <p>
+        <a href="{{path('conciergerie_admin_deleteBouquet',{'id':bouquet.id})}}"><button type="button" class="btn btn-danger">Supprimer le bouquet</button></a>
+        <a href="{{path('conciergerie_admin_bouquets')}}"><button type="button" class="btn btn-warning">Retour à la liste des bouquets</button></a>
+      </p>
+    </div>
+
+  </section>
+
+{% endblock %}

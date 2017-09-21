@@ -23,15 +23,24 @@
 		<p>
 			Catégories de l'annonce :
 			{% for category in advert.categories %}
-
 				{{ category.name }}
 				{# Si ce n'est pas le dernier élément on met une virgule #}
 				{% if not loop.last %}
 					, 
 				{% endif %}
-
 			{% endfor %}
 		</p>
+	{% endif %}
+
+	{% if listAdvertSkills|length > 0 %}
+		<div>
+			Compétences requises : 
+			<ul>
+				{% for advertSkill in listAdvertSkills %}
+					<li> Niveau {{advertSkill.level}} en {{advertSkill.skill.name}} </li>
+				{% endfor %}
+			</ul>
+		</div>
 	{% endif %}
 
 	{# Boutons d'interactions #}

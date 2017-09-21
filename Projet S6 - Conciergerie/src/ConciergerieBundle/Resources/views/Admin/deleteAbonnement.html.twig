@@ -1,0 +1,30 @@
+{% extends 'ConciergerieBundle:Admin:index.html.twig' %}
+
+
+{% block body %}
+  <section class="container catalogue">
+    <div class="row">
+      <h2>Supprimer un abonnement</h2>
+    </div>
+    
+    <p>
+      Etes-vous certain de vouloir supprimer l'abonnement "{{ abonnement.id}}" ?
+    </p>
+
+    <form action="{{ path('conciergerie_admin_deleteAbonnement', {'id': abonnement.id}) }}" method="post">
+
+      <input type="submit" value="Supprimer" class="btn btn-danger" />
+
+      <a href="{{ path('conciergerie_admin_abonnement', {'id': abonnement.id}) }}" class="btn btn-warning">
+
+        Retour aux informations de l'abonnement
+
+      </a>
+
+      {{ form_rest(form) }}
+
+    </form>
+
+  </section>
+
+{% endblock %}

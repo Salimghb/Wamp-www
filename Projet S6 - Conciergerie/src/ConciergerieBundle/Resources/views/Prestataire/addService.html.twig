@@ -1,0 +1,36 @@
+{% extends 'ConciergerieBundle:Prestataire:index.html.twig' %}
+
+
+{% block body %}
+  <section class="container catalogue">
+
+    <!-- Début du formulaire d'ajout de services -->
+    {{ form_start(form, {'method': 'post', 'action': path('conciergerie_ECPrestataire_addService'), 'attr': {'class': ''}}) }}
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.libelle, {'attr': {'class':'form-control','placeholder':'Saisissez un titre pour votre service'},'label':"Titre du service :"}) }}
+    </div>
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.type, {'attr': {'class':'form-control'},'label':"Type de service :"}) }}
+    </div>
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.description, {'attr': {'class':'form-control','placeholder':'Présentez votre service en quelques lignes...(500 caractères max)'},'label':"Description du service :"}) }}
+    </div>
+
+    <div class="input-group col-xs-8">
+      {{ form_row(form.tarif, {'attr': {'class':'form-control','placeholder':'Saisissez le prix en € de votre service'},'label':"Tarif :"}) }}
+    </div>
+
+    <div class="input-group col-xs-8">
+      <div class="alert alert-warning">
+        Ce service sera soumis à la vérification de nos équipes. Vous serez alerté par mail lors de sa mise en ligne.
+      </div>
+      <input type="submit" class="btn btn-success sub-btn" value="Ajouter" />
+    </div>
+
+    {{form_end(form)}}
+
+  </section>
+{% endblock %}

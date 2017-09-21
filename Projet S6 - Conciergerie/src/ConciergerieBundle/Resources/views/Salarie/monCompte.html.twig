@@ -1,0 +1,98 @@
+{% extends 'ConciergerieBundle:Salarie:index.html.twig' %}
+
+{% block body %}
+
+<section class="container catalogue">
+  <h2>Modification des informations</h2>
+
+  {% for message in app.session.flashbag.get('notice') %}
+  <div class="alert alert-success">
+    {{message}}
+  </div>
+  {% endfor %}
+  <!-- Début du formulaire d'édition de compte Salarie -->
+
+  {{ form_start(form, {'method': 'post', 'action': path('conciergerie_ECSalarie_monCompte'), 'attr': {'class': 'Bloc_Inscription container'}}) }}
+
+
+  <div class="input-group col-xs-8">
+    {{ form_row(form.email, {'attr': {'class':'form-control','placeholder':'Entrez votre adresse mail'},'label':'Adresse mail :'}) }}
+  </div>
+
+  <div class="input-group col-xs-8">
+    {{ form_row(form.username, {'attr': {'class':'form-control', 'placeholder':'Votre identifiant de connexion'},'label':"Nom d'utilisateur :"}) }}
+  </div>
+
+  <div class="input-group col-xs-8">
+    {{ form_row(form.plainPassword.first, {'attr': {'class':'form-control', 'placeholder':'Saisissez votre mot de passe (6 caractères minimum)'},'label':"Nouveau mot de passe :"}) }}
+  </div>
+
+  <div class="input-group col-xs-8">
+    {{ form_row(form.plainPassword.second, {'attr': {'class':'form-control', 'placeholder':'Confirmez votre mot de passe'},'label':"Confirmation mot de passe :"}) }}
+  </div>
+
+  <div class="input-group col-xs-8">
+    {{ form_row(form.salarie.nom, {'attr': {'class':'form-control', 'placeholder':"ex: DURAND" },'label':"Nom :"}) }}
+  </div>
+
+  <div class="input-group col-xs-8">
+    {{ form_row(form.salarie.prenom, {'attr': {'class':'form-control', 'placeholder':"ex: Jason" },'label':"Prénom :"}) }}
+  </div>
+
+  <div class="input-group col-xs-8">
+    <label>Adresse personnelle :</label>
+    {{ form_row(form.salarie.adresse.num, {'attr': {'class':'form-control', 'placeholder':'Numéro de la rue (ex : 219)'}}) }}
+  </div>
+
+  <div class="input-group col-xs-8">
+    {{ form_row(form.salarie.adresse.rue, {'attr': {'class':'form-control', 'placeholder':'Nom de la rue (ex : Rue du Pressoir Neuf)'}}) }}
+  </div>
+
+  <div class="input-group col-xs-8">
+    {{ form_row(form.salarie.adresse.ville, {'attr': {'class':'form-control', 'placeholder':'Ville (ex : Ouvrouer-Les-Champs)'}}) }}
+  </div>
+
+  <div class="input-group col-xs-8">
+    {{ form_row(form.salarie.adresse.codePostal, {'attr': {'class':'form-control', 'placeholder':'Code Postal (ex : 45192)'}}) }}
+  </div>
+
+  <div class="input-group col-xs-8">
+    {{ form_row(form.salarie.adresse.numAppart, {'attr': {'class':'form-control', 'placeholder':'Numéro appartement ou batiment(ex : 12)'}}) }}
+  </div>
+
+  <div class="input-group col-xs-8">
+    {{ form_row(form.salarie.adresse.etage, {'attr': {'class':'form-control', 'placeholder':'Numéro étage (ex : 2)'}}) }}
+  </div>
+
+  <div class="input-group col-xs-8">
+    {{ form_row(form.salarie.adresse.complements, {'attr': {'class':'form-control', 'placeholder':'Informations complémentaires (ex : Sonette sur la gauche)'}}) }}
+  </div>
+
+  <div class="input-group col-xs-8">
+    <label for="basic-url">Sexe :</label>
+    <p>
+      {{ form_errors(form.salarie.sexe[0]) }}
+      {{ form_widget(form.salarie.sexe[0]) }} {{ form_label(form.salarie.sexe[0]) }}
+      {{ form_errors(form.salarie.sexe[1]) }}
+      {{ form_widget(form.salarie.sexe[1]) }} {{ form_label(form.salarie.sexe[1]) }}
+    </p>
+  </div>
+
+  <div class="input-group col-xs-8">
+    {{ form_row(form.salarie.telephone, {'attr': {'class':'form-control', 'placeholder':"Saisissez votre numéro de téléphone" },'label':"Numéro de téléphone :"}) }}
+  </div>
+
+  <div class="input-group col-xs-8">
+    {{ form_row(form.salarie.dateNaissance, {'label':"Date de naissance:"}) }}
+  </div>
+
+  <div class="input-group col-xs-8">
+    <input type="submit" class="btn btn-primary sub-btn" value="Valider les changements" />
+  </div>
+
+  {{ form_end(form) }}
+
+</section>
+
+
+{% endblock %}

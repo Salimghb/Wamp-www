@@ -1,0 +1,379 @@
+###### Offline/General ######
+
+# Accueil + Onglet de connexion
+conciergerie_homepage:
+    path:     /
+    defaults:
+      _controller: ConciergerieBundle:Offline:index
+
+# PréInscription des utilisateurs pour rediriger vers le formulaire adapté
+conciergerie_preregister:
+    path:     /preregister
+    defaults:
+      _controller: ConciergerieBundle:Offline:preregister
+
+# Redirecteur : Cette route va être appelée après le login et rediriger les utilisateurs sur la page correspondant à leur role
+conciergerie_redirector:
+    path:     /redirector
+    defaults:
+      _controller:  ConciergerieBundle:Offline:redirector
+
+# Présentation des services
+conciergerie_services:
+    path:     /services
+    defaults:
+      _controller:  ConciergerieBundle:Offline:affichageServices
+
+# Présentation de la conciergerie
+conciergerie_infosConciergerie:
+    path:     /presentation
+    defaults:
+      _controller:  ConciergerieBundle:Offline:infosConciergerie
+
+# Contact
+conciergerie_contact:
+    path:     /contact
+    defaults:
+      _controller:  ConciergerieBundle:Offline:contact
+
+
+
+###### Entreprise ######
+
+# Espace Client des entreprises + Propositions de bouquets
+conciergerie_ECEntreprise:
+    path:     /entreprise
+    defaults:
+      _controller: ConciergerieBundle:Entreprise:index
+
+# Historique/Liste des abonnements
+conciergerie_ECEntreprise_listeAbo:
+    path:     /entreprise/abonnements
+    defaults:
+      _controller:  ConciergerieBundle:Entreprise:listeAbo
+
+#Détail d'un abonnement
+conciergerie_ECEntreprise_viewAbo:
+    path:     /entreprise/abonnement/{id}
+    defaults:
+      _controller:  ConciergerieBundle:Entreprise:viewAbo
+
+#Ajouter un abonnement
+conciergerie_ECEntreprise_addAbo:
+    path:     /entreprise/abonnements/add
+    defaults:
+      _controller:  ConciergerieBundle:Entreprise:addAbo
+
+#Supprimer un abonnement
+conciergerie_ECEntreprise_deleteAbo:
+    path:     /entreprise/abonnements/del/{id}
+    defaults:
+      _controller:  ConciergerieBundle:Entreprise:deleteAbo
+
+# Liste des salariés
+conciergerie_ECEntreprise_listeSalaries:
+    path:     /entreprise/salaries
+    defaults:
+      _controller:  ConciergerieBundle:Entreprise:listeSalarie
+
+#Supprimer un salarié
+conciergerie_ECEntreprise_deleteSalarie:
+    path:     /entreprise/salaries/delete/{id}
+    defaults:
+      _controller:  ConciergerieBundle:Entreprise:deleteSalarie
+
+#Détail d'un salarié
+conciergerie_ECEntreprise_viewSalarie:
+    path:     /entreprise/salarie/{id}
+    defaults:
+      _controller:  ConciergerieBundle:Entreprise:viewSalarie
+
+# Ajout de salarié
+conciergerie_ECEntreprise_addSalarie:
+    path:     /entreprise/salaries/add
+    defaults:
+      _controller: ConciergerieBundle:Entreprise:addSalarie
+
+# Détails modifiables du compte
+conciergerie_ECEntreprise_monCompte:
+    path:     /entreprise/monCompte
+    defaults:
+      _controller: ConciergerieBundle:Entreprise:monCompte
+
+# Présentation des services
+conciergerie_ECEntreprise_services:
+    path:     /entreprise/services
+    defaults:
+      _controller:  ConciergerieBundle:Entreprise:affichageServices
+
+
+
+
+
+
+###### Prestataires ######
+
+# Espace Client des prestataires
+conciergerie_ECPrestataire:
+    path:     /prestataire
+    defaults:
+      _controller: ConciergerieBundle:Prestataire:index
+
+# Ajout de service
+conciergerie_ECPrestataire_addService:
+    path:     /prestataire/add
+    defaults:
+      _controller: ConciergerieBundle:Prestataire:addService
+
+# Liste des services proposés
+conciergerie_ECPrestataire_listeServices:
+    path:     /prestataire/services
+    defaults:
+      _controller: ConciergerieBundle:Prestataire:listeServices
+
+# Détails modifiables du service $id
+conciergerie_ECPrestataire_service:
+    path:     /prestataire/service/{id}
+    defaults:
+      _controller: ConciergerieBundle:Prestataire:viewService
+
+# Liste des commandes en cours du service $id
+conciergerie_ECPrestataire_commandes:
+    path:     /prestataire/service/commandes/{id}
+    defaults:
+      _controller: ConciergerieBundle:Prestataire:commandesService
+
+# Controller qui valide la commande et redirige ensuite sur la page de suivi
+conciergerie_ECPrestataire_validerCommande:
+    path:     /prestataire/service/validercommandes/{id}
+    defaults:
+      _controller: ConciergerieBundle:Prestataire:validerCommande
+
+# Liste des commentaires déposés pour le service $id
+conciergerie_ECPrestataire_commentaires:
+    path:     /prestataire/service/commentaires/{id}
+    defaults:
+      _controller: ConciergerieBundle:Prestataire:commentairesService
+
+# Détails modifiables du compte
+conciergerie_ECPrestataire_monCompte:
+    path:     /prestataire/monCompte
+    defaults:
+      _controller: ConciergerieBundle:Prestataire:monCompte
+
+# Historique des prestations délivrées
+conciergerie_ECPrestataire_historique:
+    path:     /prestataire/historique
+    defaults:
+      _controller: ConciergerieBundle:Prestataire:historique
+
+# Présentation des services
+conciergerie_ECPrestataire_services:
+    path:     /prestataire/services
+    defaults:
+      _controller:  ConciergerieBundle:Prestataire:affichageServices
+
+
+
+
+###### Salariés ######
+
+# Espace Client des salariés + Proposition de services
+conciergerie_ECSalarie:
+    path:     /salarie
+    defaults:
+      _controller: ConciergerieBundle:Salarie:index
+
+# Consultation du service $id
+conciergerie_ECSalarie_service:
+    path:     /salarie/service/{id}
+    defaults:
+      _controller: ConciergerieBundle:Salarie:viewService
+
+
+# Commander service $id
+conciergerie_ECSalarie_commande:
+    path:     /salarie/commande/{id}
+    defaults:
+      _controller: ConciergerieBundle:Salarie:CommandeService
+
+# Confirmation commande service $id
+conciergerie_ECSalarie_ConfirmCommande:
+    path:     /salarie/commande/confirm/{id}
+    defaults:
+      _controller: ConciergerieBundle:Salarie:ConfirmCommandeService
+
+
+# Liste des commandes
+conciergerie_ECSalarie_listeCommandes:
+    path:     /salarie/commandes
+    defaults:
+      _controller: ConciergerieBundle:Salarie:listeCommandes
+
+
+# Règlement de commande $id
+conciergerie_ECSalarie_commandePay:
+    path:     /salarie/commande/{id}/pay
+    defaults:
+      _controller: ConciergerieBundle:Salarie:commandePay
+
+# Règlement de commande $id
+conciergerie_ECSalarie_confirmPay:
+    path:     /salarie/commande/{id}/payConfirm
+    defaults:
+      _controller: ConciergerieBundle:Salarie:confirmPay
+
+# Règlement de commande $id
+conciergerie_ECSalarie_confirmLivraison:
+    path:     /salarie/commande/{id}/livraisonConfirm
+    defaults:
+      _controller: ConciergerieBundle:Salarie:confirmLivraison
+
+# Publication de commentaire pour la commande $id
+conciergerie_ECSalarie_commenterService:
+    path:     /salarie/commande/comment/{id}
+    defaults:
+      _controller: ConciergerieBundle:Salarie:commenterService
+
+# Détails non modifiable de l'entreprise du salarié
+conciergerie_ECSalarie_monEntreprise:
+    path:     /salarie/entreprise
+    defaults:
+      _controller: ConciergerieBundle:Salarie:monEntreprise
+
+# Détails modifiables du compte
+conciergerie_ECSalarie_monCompte:
+    path:     /salarie/monCompte
+    defaults:
+      _controller: ConciergerieBundle:Salarie:monCompte
+
+
+
+
+###### Administrateur ######
+
+# Espace Administrateur
+conciergerie_admin:
+    path:     /admin
+    defaults:
+      _controller: ConciergerieBundle:Admin:index
+
+# Liste des entreprises
+conciergerie_admin_entreprises:
+    path:     /admin/entreprises
+    defaults:
+      _controller: ConciergerieBundle:Admin:listeEntreprises
+
+# Détails de l'entreprise $id
+conciergerie_admin_entreprise:
+    path:     /admin/entreprise/{id}
+    defaults:
+      _controller: ConciergerieBundle:Admin:viewEntreprise
+
+# Supprimer une entreprise
+conciergerie_admin_deleteEntreprise:
+    path:     /admin/entreprise/delete/{id}
+    defaults:
+      _controller: ConciergerieBundle:Admin:deleteEntreprise
+
+# Liste des prestataires
+conciergerie_admin_prestataires:
+    path:     /admin/prestataires
+    defaults:
+      _controller: ConciergerieBundle:Admin:listePrestataires
+
+# Détails du prestataire $id
+conciergerie_admin_prestataire:
+    path:     /admin/prestataire/{id}
+    defaults:
+      _controller: ConciergerieBundle:Admin:viewPrestataire
+
+# Supprimer un prestataire
+conciergerie_admin_deletePrestataire:
+    path:     /admin/prestataire/delete/{id}
+    defaults:
+      _controller: ConciergerieBundle:Admin:deletePrestataire
+
+# Liste globale des abonnements
+conciergerie_admin_abonnements:
+    path:     /admin/abonnements
+    defaults:
+      _controller: ConciergerieBundle:Admin:listeAbonnements
+
+# Détails de l'abonnement $id
+conciergerie_admin_abonnement:
+    path:     /admin/abonnement/{id}
+    defaults:
+      _controller: ConciergerieBundle:Admin:viewAbonnement
+
+# Supprimer un abonnement
+conciergerie_admin_deleteAbonnement:
+    path:     /admin/abonnement/delete/{id}
+    defaults:
+      _controller: ConciergerieBundle:Admin:deleteAbonnement
+
+# Liste globale des commandes
+conciergerie_admin_commandes:
+    path:     /admin/commandes
+    defaults:
+      _controller: ConciergerieBundle:Admin:listeCommandes
+
+# Détails de la commande $id
+conciergerie_admin_commande:
+    path:     /admin/commande/{id}
+    defaults:
+      _controller: ConciergerieBundle:Admin:viewCommande
+
+# Supprimer une commande
+conciergerie_admin_deleteCommande:
+    path:     /admin/commande/delete/{id}
+    defaults:
+      _controller: ConciergerieBundle:Admin:deleteCommande
+
+# Liste globale des commentaires (Validation et Suppression)
+conciergerie_admin_commentaires:
+    path:     /admin/commentaires
+    defaults:
+      _controller: ConciergerieBundle:Admin:listeCommentaires
+
+# Détails du commentaire $id
+conciergerie_admin_commentaire:
+    path:     /admin/commentaire/{id}
+    defaults:
+      _controller: ConciergerieBundle:Admin:viewCommentaire
+
+# Supprimer un commentaire
+conciergerie_admin_deleteCommentaire:
+    path:     /admin/commentaire/delete/{id}
+    defaults:
+      _controller: ConciergerieBundle:Admin:deleteCommentaire
+
+# Valider un commentaire
+conciergerie_admin_validerCommentaire:
+    path:     /admin/commentaire/valider/{id}
+    defaults:
+      _controller: ConciergerieBundle:Admin:validerCommentaire
+
+# Liste des bouquets
+conciergerie_admin_bouquets:
+    path:     /admin/bouquets
+    defaults:
+      _controller: ConciergerieBundle:Admin:listeBouquets
+
+# Creer un bouquet
+conciergerie_admin_addBouquet:
+    path:     /admin/bouquet/add
+    defaults:
+      _controller: ConciergerieBundle:Admin:addBouquet
+
+# Détails du bouquet $id
+conciergerie_admin_bouquet:
+    path:     /admin/bouquet/{id}
+    defaults:
+      _controller: ConciergerieBundle:Admin:viewBouquet
+
+# Supprimer un bouquet
+conciergerie_admin_deleteBouquet:
+    path:     /admin/bouquet/delete/{id}
+    defaults:
+      _controller: ConciergerieBundle:Admin:deleteBouquet

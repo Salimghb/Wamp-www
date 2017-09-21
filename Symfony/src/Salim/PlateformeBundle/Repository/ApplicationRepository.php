@@ -10,4 +10,19 @@ namespace Salim\PlateformeBundle\Repository;
  */
 class ApplicationRepository extends \Doctrine\ORM\EntityRepository
 {
+
+	public function getApplicationsWithAdvert ($limit)
+	{
+
+		return $this 
+		-> createQueryBuilder('app')
+		-> innerJoin('app.advert','a')
+		-> addSelect('a')
+		-> setMaxResults($limit)
+		-> getQuery()
+		-> getResult()
+		;
+
+	}
+
 }

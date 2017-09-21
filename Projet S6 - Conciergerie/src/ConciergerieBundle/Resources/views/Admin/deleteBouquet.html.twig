@@ -1,0 +1,30 @@
+{% extends 'ConciergerieBundle:Admin:index.html.twig' %}
+
+
+{% block body %}
+  <section class="container catalogue">
+    <div class="row">
+      <h2>Supprimer un bouquet</h2>
+    </div>
+    
+    <p>
+      Etes-vous certain de vouloir supprimer le bouquet "{{ bouquet.libelle|lower|capitalize}}" ?
+    </p>
+
+    <form action="{{ path('conciergerie_admin_deleteBouquet', {'id': bouquet.id}) }}" method="post">
+
+      <input type="submit" value="Supprimer" class="btn btn-danger" />
+
+      <a href="{{ path('conciergerie_admin_bouquet', {'id': bouquet.id}) }}" class="btn btn-warning">
+
+        Retour aux informations du bouquet
+
+      </a>
+
+      {{ form_rest(form) }}
+
+    </form>
+
+  </section>
+
+{% endblock %}

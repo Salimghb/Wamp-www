@@ -1,0 +1,190 @@
+@@charset "UTF-8";
+
+/* Media querries utilisées pour adapter l'affichage */
+@media (max-width:768px) {
+  .bloc_logo{
+    margin-top: 5%;
+  }
+
+  .barre_nav{
+    margin-top: 0%;
+  }
+  .corps{
+    text-align: center;
+  }
+  .corps h1{
+    font-size: 25px;
+    padding: 1%;
+  }
+  .corps p{
+    font-size: 15px;
+  }
+}
+/*fin media querries*/
+
+/* Début CSS header*/
+.header{
+  position:relative;
+}
+
+.logo {
+  width: 80%;
+
+}
+
+
+.user_info{
+  margin-top:3%;
+}
+
+.logged_block{
+  margin-top:32%;
+  margin-left:5%;
+  font-size: 16px;
+}
+
+.bloc_logo{
+  padding-right: 0;
+}
+
+.barre_nav {
+  margin-top:12%;
+  margin-left: 0;
+  margin-bottom: 0;
+}
+
+.barre_nav li{
+  margin-right:1%;
+}
+
+.barre_nav a{
+  color:black;
+  font-size :18px;
+}
+
+ul ul{
+  display: none;
+}
+.barre_nav li:hover ul{
+  display: block;
+}
+
+.service {
+  padding:1%;
+}
+.service:hover{
+    background-color: #E4E2E1;
+}
+
+
+.subnav{
+  list-style-type: none;
+  padding-left: 15px;;
+  position:absolute;
+  z-index: 1;
+  background-color: white;
+  width:180px;
+  border-radius: 5px;
+}
+
+.subnav a:hover, a:active, a:focus, a:visited{
+  text-decoration: none;
+}
+.subnav li:hover {
+  background-color: #E4E2E1;
+}
+.subnav a {
+  font-size: 16px;
+}
+
+/* Fin CSS header*/
+
+/*début css intro*/
+.corps {
+  background-color: #C0001A;
+  color: #FFFFFF;
+  height : auto;
+  position:relative;
+  padding-left:0;
+  border-width:medium;
+  border-color: black;
+  -moz-box-shadow: 1px 1px 5px 1px #656565;
+  -webkit-box-shadow: 1px 1px 5px 1px #656565;
+  -o-box-shadow: 1px 1px 5px 1px #656565;
+  box-shadow: 1px 1px 5px 1px #656565;
+}
+
+.TitrePage {
+  margin-top:2%;
+  margin-bottom: 1%;
+  background-color: #C0001A;
+  color: #FFFFFF;
+  position: relative;
+  height : auto;
+  -moz-box-shadow: 1px 1px 5px 1px #656565;
+  -webkit-box-shadow: 1px 1px 5px 1px #656565;
+  -o-box-shadow: 1px 1px 5px 1px #656565;
+  box-shadow: 1px 1px 5px 1px #656565;
+}
+
+
+
+.corps img{
+  width:80%;
+  height:80%;
+}
+
+.input-group{
+  margin-top: 2%;
+}
+
+.ChoixRole{
+  text-align: center;
+}
+
+.blocChoixRole a{
+  color:black;
+}
+
+
+.ChoixRole:hover{
+  background-color: #E4E2E1;
+
+}
+
+.sub-btn{
+  width:200px;
+}
+
+.certification{
+  margin-top: 3%;
+  text-align: center;
+}
+
+.bloc_certif:hover{
+  background-color: #E4E2E1;
+}
+
+.catalogue {
+  margin :1%;
+}
+
+/*Message affiché quand on se log avec un identifiant incorrect*/
+.error{
+  color:red;
+}
+
+
+.footer{
+  margin-top : 5%;
+  background-color: #725D5F;
+  height: auto;
+  width: 100%;
+  position: relative;
+}
+.footer a{
+  color:#FFFFFF;
+}
+.footer a:hover{
+  color: black;
+}

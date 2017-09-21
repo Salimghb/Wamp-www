@@ -1,0 +1,27 @@
+{% extends 'ConciergerieBundle:Prestataire:index.html.twig' %}
+
+
+{% block body %}
+<section class="container catalogue">
+
+  {% if commentaires is empty %}
+    <h3>Vous n'avez pas encore reçu d'avis pour ce service !</h3>
+  {% else %}
+      {% for commentaire in commentaires %}
+          {% if commentaire.published == true %}
+
+              <p> <b><i>" {{commentaire.contenu}} "</i></b>  </p>
+              <p><b> - {{commentaire.salarie.prenom}} {{commentaire.salarie.nom}}</b> , {{commentaire.date|date('d/m/Y H:i')}}</p>
+          {% else %}
+
+            <p class="alert alert-warning">Vous avez des commentaires en cours de modération.Ceux-ci seront publiés très prochainement si ils ne comportent pas de propos injurieux ou contrevenants à nos CGV.</p>
+
+
+
+          {% endif %}
+
+
+      {% endfor %}
+  {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'ConciergerieBundle:Salarie:index.html.twig' %}
+
+{% block body %}
+
+  <section class="container">
+ <h3>Détails du service {{service.libelle}}</h3>
+    <p><b>Catégorie : </b> {{service.type.libelle}}</p>
+    <p><b>Prestataire : </b> {{service.prestataire.user.username|lower|capitalize}}</p>
+    <p><b>Description : </b> {{service.description}}</p>
+    <p><b>Tarif : </b> {{service.tarif}}€</p>
+
+    <h3>Avis laissés pour ce service :</h3>
+    {% if service.commentaires is empty %}
+    <p>Aucun avis n'a été déposé pour le moment</p>
+    {% else %}
+        {% for commentaire in service.commentaires %}
+          {% if commentaire.published %}
+          <p><b>{{commentaire.titre}} :</b></p>
+          <p> '{{commentaire.contenu}}' </p>
+          <p><b> - {{commentaire.salarie.prenom}} {{commentaire.salarie.nom}}</b>, le {{commentaire.date|date('d/m/Y à H:i')}}</p>
+          {% endif %}
+        {% endfor %}
+    {% endif %}
+
+
+  </section>
+
+{% endblock %}
